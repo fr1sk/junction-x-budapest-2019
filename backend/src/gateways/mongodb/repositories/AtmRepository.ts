@@ -54,7 +54,7 @@ export class AtmRepository {
     await currAtm.save();
   };
 
-  async decrementBalace(atm_id: string, currency: string, amount: number): Promise<void> {
+  async decrementBalance(atm_id: string, currency: string, amount: number): Promise<void> {
     // return AtmModel.findOneAndUpdate({_id: atm_id}, {$inc: {CURRENCY: {[currency]: amount}}});
     const currAtm = await AtmModel.findOne({_id: atm_id});
     currAtm.CURRENCY[currency] -= amount;

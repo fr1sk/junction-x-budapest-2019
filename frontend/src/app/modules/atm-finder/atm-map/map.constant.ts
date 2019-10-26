@@ -1,3 +1,18 @@
+export interface LatLng {
+    lat: string;
+    lng: string;
+}
+
+export interface Atm {
+    STREET_ADDRESS: string;
+    LOCATION: {
+        X: number;
+        Y: number;
+    };
+    ZIP: number;
+    ATM_DEPOSIT: boolean;
+}
+
 export const gMapStyles: any = [
     {
         elementType: 'geometry',

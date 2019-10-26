@@ -2,5 +2,29 @@
     <div class="loader">
         <app-loader *ngIf="!mapLoaded"></app-loader>
     </div>
-    <div #map style="width:100%;height:100vh"></div>
+    <div #map style="width:100%;height:90vh"></div>
+    <div *ngIf="mapLoaded" class="settings">
+        <div *ngIf="!isWithdrawSelected" class="option_1">
+            <button class="wd_button" (click)="withdrawClicked()">
+                Withdraw
+            </button>
+            <button class="wd_button" (click)="depositClicked()">
+                Deposit
+            </button>
+        </div>
+        <div *ngIf="isWithdrawSelected" class="option_2">
+            <input
+                class="wd_input"
+                type="number"
+                placeholder="$123456"
+                (keydown)="onInputChange()"
+            />
+            <button class="cc_button --confirm" [disabled]="!isInputChanged">
+                <i-feather name="check"></i-feather>
+            </button>
+            <button class="cc_button --cancel" [disabled]="!isInputChanged">
+                <i-feather name="x"></i-feather>
+            </button>
+        </div>
+    </div>
 </div>
