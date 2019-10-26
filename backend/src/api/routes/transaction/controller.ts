@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
-import { TransactionRequest, QrCode } from 'api/routes/transaction/types';
+import { TransactionRequest, TransactionResponse } from 'api/routes/transaction/types';
 import createTransaction from 'domain/use_cases/createTransaction';
 import withdrawWithQrCode from "root/src/domain/use_cases/withdrawWithQrCode";
 
@@ -11,7 +11,7 @@ export async function createTransactionHandler(req: Request, res: Response): Pro
   }
   const request = req.body as TransactionRequest;
   try {
-    const result: QrCode = await createTransaction(request);
+    const result: TransactionResponse = await createTransaction(request);
     return res.json(result);
   } catch (err) {
     console.log(err);

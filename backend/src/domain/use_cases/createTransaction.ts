@@ -10,25 +10,25 @@ export async function createTransaction(
   }: TransactionRequest,
 ): Promise<{qr_code: string, valid_until: Moment}> {
 
-  const valid_until = moment().utc().add(EST_TIME_IN_MINS, 'minutes');
+  const VALID_UNTIL = moment().utc().add(EST_TIME_IN_MINS, 'minutes');
   const data = {CURRENCY, AMOUNT};
 
-  const qr_code = encrypt(JSON.stringify(data));
+  const QR_CODE = encrypt(JSON.stringify(data));
 
   const transaction = {
     atm: ATM_ID,
     user: USER_ID,
     amount: AMOUNT,
-    qr_code,
+    qr_code: QR_CODE,
     currency_type: CURRENCY,
     is_used: false,
     type: TransactionType.WITHDRAW,
-    valid_until: new Date(valid_until.format()),
+    valid_until: new Date(VALID_UNTIL.format()),
   };
   await atmRepository.decrementBalance(ATM_ID, transaction.currency_type, transaction.amount);
   try {
     await transactionRepository.createTransaction(transaction);
-    return {qr_code, valid_until};
+    return {qr_code: QR_CODE, valid_until: VALID_UNTIL};
   } catch(err){
     await atmRepository.incrementBalance(ATM_ID, transaction.currency_type, transaction.amount);
     throw new Error('Transaction failed')
