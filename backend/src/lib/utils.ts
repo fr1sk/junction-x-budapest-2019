@@ -11,22 +11,22 @@
 // })();
 
 import { cronJob } from 'cron';
-import { transactionRepository } from 'gateways'
+import { transactionRepository, atmRepository } from 'gateways'
 
 const checkCron = new cronJob('5 * * * * *', (async () => {
   try {
-    console.log('⏲ cron checker');
+    console.log('⌚ cron checker');
     const allTransactions = await transactionRepository.findAllActiveTransactions();
     const currDate = new Date();
     await Promise.all(allTransactions.map(async x => {
       if (currDate.getTime() > x.valid_until.getTime()) {
         x.is_used = true;
+        await atmRepository.incrementBalance(x.atm, x.currency_type, x.amount);
         await x.save();
-        
       }
     }));
   } catch (e) {
-    console.log('⌚🛑 Error in wheelWeeklyCron', e);
+    console.log('⌚error in cron: ', e);
   }
 }), null, false, 'America/Los_Angeles');
 
