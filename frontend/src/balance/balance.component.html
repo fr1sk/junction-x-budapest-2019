@@ -1,0 +1,24 @@
+<div class="main-container">
+    <div class="container">
+        <div class="balance-value">{{ balance }}</div>
+        <div class="title">total balance</div>
+    </div>
+    <div class="cards-container">
+        <div class="card card1">
+            <i-feather name="activity"></i-feather>
+            <span>Transactions</span>
+        </div>
+        <div class="card card2">
+            <i-feather name="dollar-sign"></i-feather>
+            <span>Deposit</span>
+        </div>
+        <div class="card card3" [routerLink]="['/atm-finder']">
+            <i-feather name="map-pin"></i-feather>
+            <span>Find ATM</span>
+        </div>
+        <div class="card card4">
+            <i-feather name="percent"></i-feather>
+            <span>Credit</span>
+        </div>
+    </div>
+</div>
