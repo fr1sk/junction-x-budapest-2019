@@ -1,6 +1,8 @@
 /* eslint-disable class-methods-use-this */
 import { Transaction } from 'domain/entities';
 import TransactionModel from 'gateways/mongodb/models/TransactionModel';
+import { Document } from 'mongoose';
+type TransactionMongoose = Transaction & Document;
 
 export class TransactionRepository {
   async getTransaction(id): Promise<Transaction> {
@@ -19,9 +21,10 @@ export class TransactionRepository {
     return TransactionModel.findOne({ _id: resId, qr_code: qrCode });
   }
 
-  async findAllActiveTransactions(): Promise<Transaction[]> {
+  async findAllActiveTransactions(): Promise<TransactionMongoose[]> {
     return TransactionModel.find({ is_used: false });
-  }
+  }  
+  // findAllActiveTransactions = async () => TransactionModel.find({ is_used: false });
 }
 
 export default TransactionRepository;
