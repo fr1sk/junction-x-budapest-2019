@@ -23,11 +23,7 @@ export async function createReservation(
     currency_type: currency,
     is_used: false,
     type: TransactionType.WITHDRAW,
-<<<<<<< HEAD
     valid_until: new Date(valid_until.format()),
-=======
-    valid_until,
->>>>>>> b8d490da00e6130351547b0a1cbd4ce74670a9b9
   };
 
   const atm = await atmRepository.getAtm(atm_id);
