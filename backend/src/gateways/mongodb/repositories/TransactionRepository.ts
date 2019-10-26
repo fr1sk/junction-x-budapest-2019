@@ -4,8 +4,15 @@ import TransactionModel from 'gateways/mongodb/models/TransactionModel';
 
 export class TransactionRepository {
   async createTransaction(transaction: Transaction): Promise<Transaction> {
-    console.log(transaction);
     return TransactionModel.create(transaction);
+  }
+
+  async updateTransaction(resId: string, data: object): Promise<Transaction> {
+    return Promise.reject(new Error('Not implemented'));
+  }
+
+  async findByReservationIdAndQrCode(resId: string, qrCode: string): Promise<Transaction> {
+    return Promise.reject(new Error('Not implemented'));
   }
 }
 

@@ -3,7 +3,8 @@ import { Atm } from 'domain/entities';
 
 const AtmSchema = new Schema({
   location: {
-    type: String,
+    longitude: Number,
+    latitude: Number,
   },
   deposit: {
     type: Boolean,
