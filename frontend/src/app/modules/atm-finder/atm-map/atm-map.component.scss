@@ -1,8 +1,5 @@
-#map {
-    // height: 400px;
-    // -moz-transform: scale(0.8);
-    // -moz-transform-origin: 0 0;
-}
+$button-bg-color: #7367f0;
+
 .wrap {
     display: flex;
     justify-content: center;
@@ -12,4 +9,84 @@
 .loader {
     position: absolute;
     margin-top: -105px;
+}
+
+.settings {
+    padding: 25px 30px;
+    position: absolute;
+    z-index: 5;
+    bottom: 0px;
+    width: 100%;
+    height: 100px;
+    background: rgba(0, 0, 0, 0.5);
+
+    .option_1 {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .option_2 {
+        display: flex;
+    }
+
+    .wd_button {
+        padding: 15px;
+        margin-right: 5px;
+        height: 50px;
+        width: 130px;
+        background-image: linear-gradient(135deg, #ce9ffc 10%, #7367f0 100%);
+        border: none;
+        outline: none;
+        color: white;
+        font-family: inherit;
+        font-weight: 400;
+        font-size: 20px;
+        border-radius: 3px;
+        box-shadow: 0 5px 0px darken($button-bg-color, 0%);
+        border-bottom: 2px solid darken($button-bg-color, 3%);
+
+        &:hover {
+            background: darken($button-bg-color, 5%);
+            box-shadow: 0 4px 1px darken($button-bg-color, 5%);
+            border-bottom: 2px solid darken($button-bg-color, 8%);
+            transition: all 0.1s ease-in;
+        }
+
+        &:active {
+            transform: translateY(4px);
+            border-bottom-width: 2px;
+            box-shadow: none;
+        }
+    }
+
+    .wd_input {
+        font-weight: bold;
+        background: #262830;
+        color: white;
+        border: 0;
+        font-size: 18px;
+        padding: 10px;
+        margin-right: 15px;
+    }
+
+    .cc_button {
+        color: #fff;
+        border-radius: 5px;
+        padding: 6px;
+        border: 0;
+        width: 45px;
+        margin: 0 5px;
+
+        &.--confirm {
+            background-color: #2ecc71;
+        }
+
+        &.--cancel {
+            background-color: #e74c3c;
+        }
+
+        &[disabled] {
+            background-color: gray;
+        }
+    }
 }
