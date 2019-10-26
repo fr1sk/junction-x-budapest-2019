@@ -9,12 +9,10 @@ export async function createReservation(
     currency, amount, atm_id, user_id, estimated_time_in_mins,
   }: CreateReservation,
 ): Promise<{qr_code: string, valid_until: Moment}> {
-  const valid_until = moment().add(estimated_time_in_mins, 'minutes');
+  const valid_until = moment().utc().add(estimated_time_in_mins, 'minutes');
   const data = {
     currency,
     amount,
-    atm_id,
-    user_id,
     valid_until,
   };
 
@@ -29,7 +27,7 @@ export async function createReservation(
     type: TransactionType.WITHDRAW,
   };
 
-  await transactionRepository.createTransaction(transaction);
+  await transactionRepository.create(transaction);
 
   return {
     qr_code,
