@@ -4,6 +4,7 @@ import AtmModel from 'gateways/mongodb/models/AtmModel';
 import { getDistanceInKm } from 'lib/distance';
 
 export class AtmRepository {
+
   async getAtmList(location: Location): Promise<Atm[]> {
     const atms = await AtmModel.find({});
 
@@ -14,6 +15,14 @@ export class AtmRepository {
     const nearestFiveAtms = sortedAtms.slice(0, 5);
 
     return nearestFiveAtms;
+  }
+
+  async findOneById(atm_id: string):Promise<Atm> {
+    return Promise.reject({error: 'Not implemented'});
+  };
+
+  async update(atm_id: string, data: object): Promise<Atm> {
+    return Promise.reject({error: 'Not implemented'});
   }
 }
 

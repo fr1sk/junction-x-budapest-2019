@@ -12,7 +12,7 @@ export type CreateReservation = {
 }
 
 export type QrCode = {
-    valid_until: Moment;
+    valid_until?: Moment;
     qr_code: string; // encrypted hash containing necessary info
 }
 
