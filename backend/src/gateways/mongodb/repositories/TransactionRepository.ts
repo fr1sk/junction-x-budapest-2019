@@ -16,7 +16,7 @@ export class TransactionRepository {
   }
 
   async findOneById(transaction_id): Promise<Transaction> {
-    return Promise.reject(new Error('Not implemented'));
+    return await TransactionModel.findById(transaction_id);
   }
 
   // async findAllActiveTransactions(): Promise<Transaction[]> {
@@ -27,3 +27,4 @@ export class TransactionRepository {
 }
 
 export default TransactionRepository;
+

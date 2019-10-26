@@ -6,7 +6,7 @@ import {CurrencyType} from "root/src/api/routes/transaction/types";
 
 export class AtmRepository {
   async getAtmList(location: Location): Promise<Atm[]> {
-    const atms = await AtmModel.find({});
+    const atms = await AtmModel.find({}).lean();
 
     const nearestFiveAtms = this.getNearestAtms(atms, location);
 

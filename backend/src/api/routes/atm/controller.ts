@@ -15,3 +15,13 @@ export async function getAtmListHandler(req: Request, res: Response): Promise<Re
 
   return res.json(atmList);
 }
+
+export async function getRecommendedAtmsHandler(req: Request, res: Response): Promise<Response> {
+  const {X, Y} = req.body;
+  // todo send some other atms..
+  const atmList = await getAtmList({X, Y});
+  // todo add relative info..
+  const _atms = atmList.map((a, i) => ({...a, EST_TIME_IN_MINS: 15 + i}));
+
+  return res.json(_atms);
+}

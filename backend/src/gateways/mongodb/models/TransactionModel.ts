@@ -18,6 +18,7 @@ const TransactionSchema = new Schema({
     default: false,
   },
   valid_until: Date,
+  currency_type: String,
 });
 
 type TransactionType = Transaction & Document;

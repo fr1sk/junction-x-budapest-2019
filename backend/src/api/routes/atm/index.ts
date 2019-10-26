@@ -27,4 +27,6 @@ const routes = Router();
 
 routes.get('/', atmQuery, atmController.getAtmListHandler);
 
+routes.post('/recommend', atmController.getRecommendedAtmsHandler);
+
 export default routes;
