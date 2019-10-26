@@ -1,8 +1,14 @@
-import UserModel from "gateways/mongodb/models/UserModel";
+import { User } from 'domain/entities';
+import UserModel from 'gateways/mongodb/models/UserModel';
 
 export class UserRepository {
+  async getUser(): Promise<User> {
+    const user =  await UserModel.findOne({ is_loggedin: false });
 
-    async decrementBalance(user_id: string, amount: number): Promise<void> {
-        await UserModel.findOneAndUpdate({_id: user_id}, {$inc: {balance: -amount}});
-    }
+    return user;
+  }
+
+  async decrementBalance(user_id: string, amount: number): Promise<void> {
+    await UserModel.findOneAndUpdate({_id: user_id}, {$inc: {balance: -amount}});
+  }
 }

@@ -1,4 +1,5 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
+import { User } from 'domain/entities';
 
 const UserSchema = new Schema({
   balance: {
@@ -7,6 +8,12 @@ const UserSchema = new Schema({
   currency: {
     type: String,
   },
+  is_loggedin: {
+    type: Boolean,
+    default: false,
+  },
 });
 
-export default mongoose.model('User', UserSchema);
+type UserType = User & Document;
+
+export default mongoose.model<UserType>('User', UserSchema);
