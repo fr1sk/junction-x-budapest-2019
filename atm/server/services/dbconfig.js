@@ -11,7 +11,8 @@ const mongooseOptions = {
   reconnectInterval: 1000,
   autoReconnect: true,
   useCreateIndex: true,
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 };
 
 mongoose.connect(process.env.MONGO_URI, mongooseOptions);
