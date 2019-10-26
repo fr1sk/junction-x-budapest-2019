@@ -17,6 +17,7 @@ const TransactionSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  valid_until: Date,
 });
 
 type TransactionType = Transaction & Document;
