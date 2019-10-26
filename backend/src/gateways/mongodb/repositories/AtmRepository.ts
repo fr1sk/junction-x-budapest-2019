@@ -46,7 +46,7 @@ export class AtmRepository {
     return Promise.reject(new Error('Not implemented'));
   }
 
-  async incrementBalance(atm_id: string, currency: CurrencyType, amount: number): Promise<void> {
+  async incrementBalance(atm_id: string, currency: string, amount: number): Promise<void> {
     // return AtmModel.findOneAndUpdate({_id: atm_id}, {$inc: {CURRENCY: {[currency]: amount}}});
     const currAtm = await AtmModel.findOne({_id: atm_id});
     currAtm.CURRENCY[currency] += amount;

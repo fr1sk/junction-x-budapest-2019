@@ -1,6 +1,6 @@
 import { query } from 'express-validator';
 
 export const atmQuery = [
-  query('X').isNumeric(),
-  query('Y').isNumeric(),
+  query('x').isNumeric(),
+  query('y').isNumeric(),
 ];
