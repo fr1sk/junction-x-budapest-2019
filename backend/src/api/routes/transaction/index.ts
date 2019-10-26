@@ -4,7 +4,7 @@ import {transactionQuery} from './validation';
 
 const routes = Router();
 
-routes.post('/reserve', transactionQuery, transactionController.createReservationHandler);
+routes.post('/', transactionQuery, transactionController.createTransactionHandler);
 routes.post('/withdraw', transactionController.withdrawWithQrCodeHandler);
 
 

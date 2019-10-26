@@ -3,7 +3,7 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        padding: 15px 0;
+        height: 10vh;
 
         .title {
             font-weight: 700;
@@ -13,18 +13,4 @@
     &__logo {
         width: 150px;
     }
-}
-
-// .menu {
-//     fill: #d3d3d3;
-// }
-
-// .search {
-//     fill: #d3d3d3;
-// }
-
-i-feather {
-    // color: #7f8fa6;
-    // color: #dcdde1;
-    // color: #696969;
 }

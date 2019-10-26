@@ -3,7 +3,6 @@ import { encrypt } from 'lib/encryption';
 import {atmRepository, transactionRepository} from 'gateways';
 import moment, { Moment } from 'moment';
 import { TransactionType } from 'domain/entities/Transaction';
-import {undoReservation} from "root/src/domain/use_cases/undoReservation";
 
 export async function createTransaction(
   {
@@ -26,16 +25,12 @@ export async function createTransaction(
     type: TransactionType.WITHDRAW,
     valid_until: new Date(valid_until.format()),
   };
-
-  const atm = await atmRepository.getAtm(ATM_ID);
-  const nextBalance = atm.CURRENCY[CURRENCY] - AMOUNT;
-  await atmRepository.updateAtm(ATM_ID, { balance: nextBalance });
-
+  await atmRepository.decrementBalance(ATM_ID, transaction.currency_type, transaction.amount);
   try {
     await transactionRepository.createTransaction(transaction);
     return {qr_code, valid_until};
   } catch(err){
-    await atmRepository.decrementBalace(ATM_ID, transaction.currency_type, transaction.amount);
+    await atmRepository.incrementBalance(ATM_ID, transaction.currency_type, transaction.amount);
     throw new Error('Transaction failed')
   }
 }
