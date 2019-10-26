@@ -42,7 +42,7 @@ export default (sequelize: Sequelize): Record<string, any> => {
     },
   }, {
     sequelize,
-    tableName: 'atm',
+    tableName: 'atms',
     timestamps: true,
     createdAt: 'created_at',
     updatedAt: 'updated_at',

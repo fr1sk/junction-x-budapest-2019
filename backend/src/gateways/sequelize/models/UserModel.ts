@@ -32,7 +32,7 @@ export default (sequelize: Sequelize): Record<string, any> => {
     },
   }, {
     sequelize,
-    tableName: 'user',
+    tableName: 'users',
     timestamps: true,
     createdAt: 'created_at',
     updatedAt: 'updated_at',

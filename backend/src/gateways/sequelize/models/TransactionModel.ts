@@ -11,6 +11,8 @@ export default (sequelize: Sequelize): Record<string, any> => {
 
     public amount!: number;
 
+    public qr_code!: string;
+
     public static associate(): void {
       this.belongsTo(sequelize.models.AtmModel, {
         foreignKey: 'atm_id',
@@ -49,9 +51,13 @@ export default (sequelize: Sequelize): Record<string, any> => {
     amount: {
       type: DataTypes.DECIMAL,
     },
+    qr_code: {
+      type: new DataTypes.STRING(128),
+      allowNull: true,
+    },
   }, {
     sequelize,
-    tableName: 'transaction',
+    tableName: 'transactions',
     timestamps: true,
     createdAt: 'created_at',
     updatedAt: 'updated_at',
