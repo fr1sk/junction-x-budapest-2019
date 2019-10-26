@@ -2,14 +2,29 @@ import { Location } from './Location';
 
 export interface Atm {
     _id?: string;
-    location: Location;
-    balance: number;
-    currencies: string[];
+    STREET_ADDRESS?: string;
+    ZIP?: number;
+    ATM_DEPOSIT: boolean;
+    LOCATION: Location;
+    CURRENCY: Currency;
+    TRANSACTIONS: TransactionType[];
     distance?: string;
+}
+
+interface TransactionType {
+  FRIDAY?: string;
+  SATURDAY?: string;
+  SUNDAY?: string;
+}
+
+interface Currency {
+  HUF?: number;
+  EUR?: number;
 }
 
 export interface AtmFilter {
   deposit: boolean;
   location: Location;
   amount: number;
+  currency: string;
 }

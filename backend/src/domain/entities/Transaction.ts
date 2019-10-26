@@ -8,6 +8,8 @@ export interface Transaction {
   type: string;
   amount: number;
   qr_code?: string;
+  is_used?: boolean;
+  currency_type: string;
 }
 
 export const TransactionType = {

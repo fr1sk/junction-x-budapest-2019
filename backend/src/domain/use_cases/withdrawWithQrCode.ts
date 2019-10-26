@@ -10,7 +10,7 @@ export async function withdrawWithQrCode(transaction_id: string, qr_code: string
   const now = moment().utc();
   if (moment(qr_code_data.valid_until).isBefore(now) && transaction.type === 'RESERVE') {
     const atm = await atmRepository.getAtm(atm_id);
-    const nextBalance = atm.balance - qr_code_data.amount;
+    const nextBalance = atm.CURRENCY[transaction.currency_type] - qr_code_data.amount;
     // user..
     await atmRepository.updateAtm(atm_id, { balance: nextBalance });
     await transactionRepository.updateTransaction(transaction_id, { type: 'WITHDRAW' });

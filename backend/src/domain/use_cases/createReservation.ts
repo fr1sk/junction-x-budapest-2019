@@ -20,11 +20,12 @@ export async function createReservation(
     user: user_id,
     amount,
     qr_code,
+    currency_type: currency,
     type: TransactionType.WITHDRAW,
   };
 
   const atm = await atmRepository.getAtm(atm_id);
-  const nextBalance = atm.balance - amount;
+  const nextBalance = atm.CURRENCY[currency] - amount;
   await atmRepository.updateAtm(atm_id, { balance: nextBalance });
   await transactionRepository.createTransaction(transaction);
   // todo retry or rollback...
