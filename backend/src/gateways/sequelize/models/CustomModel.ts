@@ -25,4 +25,4 @@ export default (sequelize: Sequelize): Record<string, any> => {
   });
 
   return CustomModel;
-}
+};
