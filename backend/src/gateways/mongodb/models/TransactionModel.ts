@@ -13,7 +13,10 @@ const TransactionSchema = new Schema({
   type: String,
   amount: Number,
   qr_code: String,
-  is_used: Boolean,
+  is_used: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 type TransactionType = Transaction & Document;
