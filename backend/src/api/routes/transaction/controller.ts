@@ -5,10 +5,6 @@ import createTransaction from 'domain/use_cases/createTransaction';
 import withdrawWithQrCode from "root/src/domain/use_cases/withdrawWithQrCode";
 
 export async function createTransactionHandler(req: Request, res: Response): Promise<Response> {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
   const request = req.body as TransactionRequest;
   try {
     const result: TransactionResponse = await createTransaction(request);
