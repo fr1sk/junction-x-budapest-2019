@@ -27,7 +27,7 @@ export async function createReservation(
     type: TransactionType.WITHDRAW,
   };
 
-  await transactionRepository.create(transaction);
+  await transactionRepository.createTransaction(transaction);
 
   return {
     qr_code,

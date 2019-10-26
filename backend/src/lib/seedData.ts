@@ -70,5 +70,4 @@ export async function seedData() {
   console.log('-----------NEW TRANSACTION--------------');
   console.log(newTransaction2);
   console.log('---------------------------------');
-  
 }

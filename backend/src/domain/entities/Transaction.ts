@@ -1,6 +1,5 @@
 import { Atm } from './Atm';
 import { User } from './User';
-import { Document, Model } from 'mongoose';
 
 export interface Transaction {
   _id?: string;

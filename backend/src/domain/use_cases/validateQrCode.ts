@@ -1,7 +1,7 @@
-import {transactionRepository} from 'gateways';
+import { transactionRepository } from 'gateways';
 
 export async function validateQrCode(): Promise<void> {
-    return Promise.resolve();
+  return Promise.resolve();
 }
 
 export default validateQrCode;

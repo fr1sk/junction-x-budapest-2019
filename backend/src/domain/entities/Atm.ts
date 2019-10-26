@@ -7,3 +7,9 @@ export interface Atm {
     currencies: string[];
     distance?: string;
 }
+
+export interface AtmFilter {
+  deposit: boolean;
+  location: Location;
+  amount: number;
+}
