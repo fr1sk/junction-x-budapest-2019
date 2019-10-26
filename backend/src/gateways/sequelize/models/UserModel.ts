@@ -8,7 +8,7 @@ export default (sequelize: Sequelize): Record<string, any> => {
     public balance!: number;
 
     public currency!: string;
-    
+
     public static associate(): void {
       this.belongsToMany(sequelize.models.AtmModel, {
         foreignKey: 'user_id',
@@ -39,4 +39,4 @@ export default (sequelize: Sequelize): Record<string, any> => {
   });
 
   return UserModel;
-}
+};

@@ -3,6 +3,8 @@ import { Transaction } from 'domain/entities/Transaction';
 
 export default (sequelize: Sequelize): Record<string, any> => {
   class TransactionModel extends Model implements Transaction {
+    public id!: string;
+
     public atm_id!: string;
 
     public user_id!: string;
@@ -27,6 +29,11 @@ export default (sequelize: Sequelize): Record<string, any> => {
   }
 
   TransactionModel.init({
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+    },
     atm_id: {
       type: DataTypes.UUID,
       primaryKey: true,
@@ -34,7 +41,6 @@ export default (sequelize: Sequelize): Record<string, any> => {
         model: 'atm',
         key: 'id',
       },
-      unique: 'transaction',
     },
     user_id: {
       type: DataTypes.UUID,
@@ -43,7 +49,6 @@ export default (sequelize: Sequelize): Record<string, any> => {
         model: 'user',
         key: 'id',
       },
-      unique: 'transaction',
     },
     type: {
       type: new DataTypes.STRING(128),
@@ -52,7 +57,7 @@ export default (sequelize: Sequelize): Record<string, any> => {
       type: DataTypes.DECIMAL,
     },
     qr_code: {
-      type: new DataTypes.STRING(128),
+      type: new DataTypes.STRING(400),
       allowNull: true,
     },
   }, {
@@ -64,4 +69,4 @@ export default (sequelize: Sequelize): Record<string, any> => {
   });
 
   return TransactionModel;
-}
+};

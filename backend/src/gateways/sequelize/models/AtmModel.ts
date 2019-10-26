@@ -4,7 +4,7 @@ import { Atm } from 'domain/entities/Atm';
 export default (sequelize: Sequelize): Record<string, any> => {
   class AtmModel extends Model implements Atm {
     public id!: string;
-    
+
     public location!: string;
 
     public deposit!: boolean;
@@ -49,4 +49,4 @@ export default (sequelize: Sequelize): Record<string, any> => {
   });
 
   return AtmModel;
-}
+};
