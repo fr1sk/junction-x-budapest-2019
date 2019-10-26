@@ -22,14 +22,14 @@ export async function createReservation(
   console.log(qr_code);
 
   const transaction = {
-    atm_id,
-    user_id,
+    atm: atm_id,
+    user: user_id,
     amount,
     qr_code,
     type: TransactionType.WITHDRAW,
   };
 
-  await transactionRepository.create(transaction);
+  await transactionRepository.createTransaction(transaction);
 
   return {
     qr_code,
