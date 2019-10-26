@@ -1,5 +1,4 @@
 import {decrypt, encrypt} from "../../src/lib/encryption";
-import moment = require("moment");
 
 describe('Test encryption', (): void => {
 
@@ -7,8 +6,8 @@ describe('Test encryption', (): void => {
 
         const data = JSON.stringify({
             currency: 'EUR',
-            amount: 100,
-            valid_until: moment.now().toString(),
+            amount: 100
+
         });
         const qr_code_data = encrypt(data);
         console.log(qr_code_data);

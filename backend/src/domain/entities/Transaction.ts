@@ -1,6 +1,3 @@
-import { Atm } from './Atm';
-import { User } from './User';
-
 export interface Transaction {
   _id?: string;
   atm: string;
@@ -8,6 +5,9 @@ export interface Transaction {
   type: string;
   amount: number;
   qr_code?: string;
+  is_used: boolean;
+  currency_type: string;
+  valid_until?: Date;
 }
 
 export const TransactionType = {

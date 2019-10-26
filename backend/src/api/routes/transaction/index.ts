@@ -1,10 +1,11 @@
-import { Router } from 'express';
+import {Router} from 'express';
 import * as transactionController from './controller';
-import { transactionQuery } from './validation';
+import {transactionQuery} from './validation';
 
 const routes = Router();
 
-// todo add swagger
 routes.post('/reserve', transactionQuery, transactionController.createReservationHandler);
+routes.post('/withdraw', transactionController.withdrawWithQrCodeHandler);
+
 
 export default routes;

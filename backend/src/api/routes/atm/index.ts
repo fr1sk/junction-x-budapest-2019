@@ -27,6 +27,6 @@ const routes = Router();
 
 routes.get('/', atmQuery, atmController.getAtmListHandler);
 
-routes.post('/validate-qr-code', atmController.getValidateQrCodeHandler);
+routes.post('/recommend', atmController.getRecommendedAtmsHandler);
 
 export default routes;
