@@ -7,9 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class FetchService {
     constructor(private http: HttpClient) {}
 
-    testirajJebeniBe() {
-        this.http
-            .get('/api/atms?longitude=23&latitude=23')
-            .subscribe(data => console.log(data));
+    getAllAtms(lat: number, lng: number) {
+        return this.http.get(`/api/atms?longitude=${lat}&latitude=${lng}`);
     }
 }
