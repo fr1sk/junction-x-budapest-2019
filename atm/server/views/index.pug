@@ -1,0 +1,61 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  title QR Scanner Demo
+style.
+  canvas {
+  display: none;
+  }
+  hr {
+  margin-top: 32px;
+  }
+  input[type="file"] {
+  display: block;
+  margin-bottom: 16px;
+  }
+  div {
+  margin-bottom: 16px;
+  }
+  #logo {
+    width: 60%;
+  }
+img#logo(src='./images/otp-logo.png')
+div
+  b Device has camera: 
+  span#cam-has-camera
+  br
+  video#qr-video(muted='' playsinline='')
+b Detected QR code: 
+span#cam-qr-result None
+br
+b Last detected at: 
+span#cam-qr-result-timestamp
+
+
+script(type='module').
+  import QrScanner from "./scripts/qr-scanner.min.js";
+  QrScanner.WORKER_PATH = './scripts/qr-scanner-worker.min.js';
+  const video = document.getElementById('qr-video');
+  const camHasCamera = document.getElementById('cam-has-camera');
+  const camQrResult = document.getElementById('cam-qr-result');
+
+  const camQrResultTimestamp = document.getElementById('cam-qr-result-timestamp');
+  const fileSelector = document.getElementById('file-selector');
+  const fileQrResult = document.getElementById('file-qr-result');
+  function setResult(label, result) {
+    return window.location.href = `http://localhost:8080/atm/${result}`;
+    //- console.log('Set result called')
+    //- label.textContent = result;
+    //- camQrResultTimestamp.textContent = new Date().toString();
+    //- label.style.color = 'teal';
+    //- clearTimeout(label.highlightTimeout);
+    //- label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
+  }
+  // ####### Web Cam Scanning #######
+  QrScanner.hasCamera().then(hasCamera => {console.log(hasCamera); camHasCamera.textContent = hasCamera});
+  const scanner = new QrScanner(video, result => setResult(camQrResult, result));
+  scanner.start();
+
+
+
+  

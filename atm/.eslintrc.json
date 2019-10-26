@@ -1,0 +1,65 @@
+{
+  "env": {
+    "node": true,
+    "browser": true,
+    "jquery": true
+  },
+  "extends": ["airbnb-base"],
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "globals": {
+    "Promise": true
+  },
+  "rules": {
+    "no-unused-vars": "warn",
+    "require-jsdoc": "off",
+    "no-console": "warn",
+    "new-cap": "off",
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "camelcase": "off",
+    "no-tabs": "off",
+    "no-trailing-spaces": "error",
+    "no-mixed-spaces-and-tabs": "error",
+    "max-len": [
+      "error",
+      {
+        "code": 180
+      }
+    ],
+    "no-useless-escape": "warn",
+    "space-infix-ops": "error",
+    "eqeqeq": "warn",
+    "no-underscore-dangle": "off",
+    "no-param-reassign": "off",
+    "arrow-body-style": ["error", "as-needed"],
+    "no-plusplus": "off",
+    "no-await-in-loop": "warn",
+    "func-names": ["warn", "never"],
+    "no-return-assign": "warn",
+    "comma-dangle": [
+      "error",
+      {
+        "functions": "ignore"
+      }
+    ],
+    // "object-curly-newline": ["error", {
+    //   "ObjectExpression": "never",
+    //   "ObjectPattern": { "multiline": true },
+    //   "ImportDeclaration": "never",
+    //   "ExportDeclaration": { "multiline": true, "minProperties": 3 }
+    // }],
+    "object-curly-newline": "off",
+    "no-use-before-define": [
+      "error",
+      {
+        "functions": true,
+        "classes": true,
+        "variables": true
+      }
+    ],
+    "consistent-return": "warn",
+    "arrow-parens": ["error", "as-needed"],
+    "global-require": "warn"
+  }
+}
