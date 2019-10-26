@@ -7,7 +7,7 @@ export async function withdrawWithQrCode(transaction_id: string, qr_code: string
     const transaction = await transactionRepository.findByReservationIdAndQrCode(transaction_id, qr_code);
     const now = moment().utc();
     if (moment(qr_code_data.valid_until).isBefore(now) && transaction.type === 'RESERVE') {
-        userRepository.update(transaction.user, qr_code_data.amount);
+        userRepository.decrementBalance(transaction.user, qr_code_data.amount);
         await transactionRepository.updateTransaction(transaction_id, {type: 'WITHDRAW'});
     } else {
         // rollback..
