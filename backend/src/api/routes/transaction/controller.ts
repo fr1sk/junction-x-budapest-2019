@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
-import { CreateReservation, QrCode } from 'api/routes/transaction/types';
-import createReservation from 'domain/use_cases/createReservation';
+import { TransactionRequest, QrCode } from 'api/routes/transaction/types';
+import createTransaction from 'domain/use_cases/createTransaction';
 import withdrawWithQrCode from "root/src/domain/use_cases/withdrawWithQrCode";
 
 export async function createReservationHandler(req: Request, res: Response): Promise<Response> {
@@ -9,9 +9,9 @@ export async function createReservationHandler(req: Request, res: Response): Pro
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  const request = req.body as CreateReservation;
+  const request = req.body as TransactionRequest;
   try {
-    const result: QrCode = await createReservation(request);
+    const result: QrCode = await createTransaction(request);
     return res.json(result);
   } catch (err) {
     console.log(err);

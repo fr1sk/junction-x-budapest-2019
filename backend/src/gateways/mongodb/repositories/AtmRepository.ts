@@ -6,7 +6,7 @@ import {CurrencyType} from "root/src/api/routes/transaction/types";
 
 export class AtmRepository {
   async getAtmList(location: Location): Promise<Atm[]> {
-    const atms = await AtmModel.find({});
+    const atms = await AtmModel.find({}).lean();
 
     const nearestFiveAtms = this.getNearestAtms(atms, location);
 
@@ -46,9 +46,19 @@ export class AtmRepository {
     return Promise.reject(new Error('Not implemented'));
   }
 
-  async incrementBalance(atm_id: string, currency: CurrencyType, amount: number): Promise<Atm> {
-    return AtmModel.findOneAndUpdate({_id: atm_id}, {$inc: {CURRENCY: {[currency]: amount}}});
-  }
+  async incrementBalance(atm_id: string, currency: CurrencyType, amount: number): Promise<void> {
+    // return AtmModel.findOneAndUpdate({_id: atm_id}, {$inc: {CURRENCY: {[currency]: amount}}});
+    const currAtm = await AtmModel.findOne({_id: atm_id});
+    currAtm.CURRENCY[currency] += amount;
+    await currAtm.save();
+  };
+
+  async decrementBalace(atm_id: string, currency: CurrencyType, amount: number): Promise<void> {
+    // return AtmModel.findOneAndUpdate({_id: atm_id}, {$inc: {CURRENCY: {[currency]: amount}}});
+    const currAtm = await AtmModel.findOne({_id: atm_id});
+    currAtm.CURRENCY[currency] -= amount;
+    await currAtm.save();
+  };
 }
 
 export default AtmRepository;

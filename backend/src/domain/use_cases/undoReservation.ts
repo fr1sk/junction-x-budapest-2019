@@ -5,6 +5,5 @@ export async function undoReservation(atm_id: string, transaction_id: string){
     await transactionRepository.updateTransaction(transaction_id, {
         is_used: true
     });
-    const currency = "EUR";
-    await atmRepository.incrementBalance(atm_id, currency, transaction.amount);
+    await atmRepository.incrementBalance(atm_id, transaction.currency_type, transaction.amount);
 }
