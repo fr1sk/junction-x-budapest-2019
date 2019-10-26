@@ -1,7 +1,11 @@
+import { Atm } from './Atm';
+import { User } from './User';
+import { Document, Model } from 'mongoose';
+
 export interface Transaction {
-  id?: string;
-  atm_id: string;
-  user_id: string;
+  _id?: string;
+  atm: string;
+  user: string;
   type: string;
   amount: number;
   qr_code?: string;

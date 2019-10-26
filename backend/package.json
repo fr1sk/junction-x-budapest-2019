@@ -14,6 +14,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@types/mongodb": "^3.3.6",
+    "@types/mongoose": "^5.5.23",
     "body-parser": "^1.18.3",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
@@ -22,11 +24,13 @@
     "express-validator": "^6.2.0",
     "helmet": "^3.21.2",
     "moment": "^2.24.0",
+    "mongoose": "^5.7.7",
     "morgan": "^1.9.1",
     "pg": "^7.12.1",
     "sequelize": "^5.21.1",
     "swagger-jsdoc": "^3.4.0",
     "swagger-ui-express": "^4.1.2",
+    "ts-mongoose": "0.0.21",
     "tsconfig-paths": "^3.9.0"
   },
   "devDependencies": {

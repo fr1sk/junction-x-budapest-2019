@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import 'tsconfig-paths/register';
+import 'gateways/mongodb/connection';
 import http from 'http';
 import app from 'api';
 import constants from 'config/constants';
