@@ -21,6 +21,7 @@ export async function createReservation(
     amount,
     qr_code,
     currency_type: currency,
+    is_used: false,
     type: TransactionType.WITHDRAW,
   };
 
