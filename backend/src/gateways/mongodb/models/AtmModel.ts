@@ -11,10 +11,30 @@ const AtmSchema = new Schema({
   ATM_DEPOSIT: {
     type: Boolean,
   },
-  TRANSACTIONS: {},
+  TRANSACTIONS: {
+    FRIDAY: [{
+      type: Number,
+      required: false,
+    }],
+    SATURDAY: [{
+      type: Number,
+      required: false,
+    }],
+    SUNDAY: [{
+      type: Number,
+      required: false,
+    }],
+  },
   CURRENCY: {
-
-  }
+    HUF: {
+      type: Number,
+      required: false,
+    },
+    EUR: {
+      type: Number,
+      required: false,
+    },
+  },
 });
 
 type AtmType = Atm & Document;

@@ -15,8 +15,8 @@ try {
 
 mongoose.connection.once('open', async (): Promise<void> => {
   console.log('Connection with database is established');
-  mongoose.connection.db.dropDatabase();
-  await seedData();
+  // mongoose.connection.db.dropDatabase();
+  // await seedData();
 }).on('error', (e: Error): Error => {
   throw e;
 });

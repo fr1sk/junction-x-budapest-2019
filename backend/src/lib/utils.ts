@@ -11,13 +11,19 @@
 // })();
 
 import { cronJob } from 'cron';
+import { transactionRepository } from 'gateways'
 
 const checkCron = new cronJob('5 * * * * *', (async () => {
   try {
     console.log('⏲ cron checker');
-    const allTransactions = await Cards.find({ 'config.wheel_card.limit': 'WEEKLY'});
-    await Promise.all(allWeeklyWheelCard.map(async x => {
-      await WheelUsage.deleteMany({ card: x._id });
+    const allTransactions = await transactionRepository.findAllActiveTransactions();
+    const currDate = new Date();
+    await Promise.all(allTransactions.map(async x => {
+      if (currDate.getTime() > x.valid_until.getTime()) {
+        x.is_used = true;
+        await x.save();
+        
+      }
     }));
   } catch (e) {
     console.log('⌚🛑 Error in wheelWeeklyCron', e);

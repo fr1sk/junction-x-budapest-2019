@@ -1,6 +1,8 @@
 import AtmModel from 'gateways/mongodb/models/AtmModel';
 import UserModel from 'gateways/mongodb/models/UserModel';
 import TransactionModel from 'gateways/mongodb/models/TransactionModel';
+import {transactionRepository} from "root/src/gateways";
+import {undoReservation} from "root/src/domain/use_cases/undoReservation";
 
 export async function seedData() {
   const user = {
@@ -13,32 +15,38 @@ export async function seedData() {
   console.log('---------------------------------');
 
   const atm1 = {
-    location: {
-      longitude: 47.474856,
-      latitude: 19.098792,
+    LOCATION: {
+      X: 47.474856,
+      Y: 19.098792,
     },
-    deposit: true,
-    balance: 140,
-    currencies: ['EUR', 'HUF'],
+    ATM_DEPOSIT: true,
+    CURRENCY: {
+      EUR: 100,
+      HUF: 200,
+    },
   };
 
   const atm2 = {
-    location: {
-      longitude: 47.481920,
-      latitude: 19.068655,
+    LOCATION: {
+      X: 47.481920,
+      Y: 19.068655,
     },
-    deposit: true,
-    balance: 140,
-    currencies: ['EUR', 'HUF'],
+    ATM_DEPOSIT: true,
+    CURRENCY: {
+      EUR: 300,
+      HUF: 200,
+    },
   };
   const atm3 = {
-    location: {
-      longitude: 47.486211,
-      latitude: 19.074642,
+    LOCATION: {
+      X: 47.486211,
+      Y: 19.074642,
     },
-    deposit: true,
-    balance: 140,
-    currencies: ['EUR', 'HUF'],
+    DEPOSIT: true,
+    CURRENCY: {
+      EUR: 500, 
+      HUF: 300,
+    },
   };
   const newAtm1 = await AtmModel.create(atm1);
   const newAtm2 = await AtmModel.create(atm2);
@@ -65,6 +73,7 @@ export async function seedData() {
     user: newUser._id,
     type: 'RESERVE',
     amount: 30.5,
+    is_used: false,
   };
   const newTransaction2 = await TransactionModel.create(transaction2);
   console.log('-----------NEW TRANSACTION--------------');
