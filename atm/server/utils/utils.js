@@ -30,8 +30,8 @@ const addDataToJson = () => {
   newJson.forEach(x => {
     const shouldHaveEur = !!Math.round(Math.random())
     x.CURRENCY = {
-      huf: Math.floor(Math.random() * 10000000) + 1000000,
-      eur: shouldHaveEur ? Math.floor(Math.random() * 15000) + 5000 : undefined
+      HUF: Math.floor(Math.random() * 10000000) + 1000000,
+      EUR: shouldHaveEur ? Math.floor(Math.random() * 15000) + 5000 : undefined
     }
     x.LOCATION.X = parseFloat(x.LOCATION.X.replace(',', '.'))
     x.LOCATION.Y = parseFloat(x.LOCATION.Y.replace(',', '.'))

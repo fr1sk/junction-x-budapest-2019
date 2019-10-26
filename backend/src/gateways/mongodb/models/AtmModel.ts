@@ -2,19 +2,19 @@ import mongoose, { Schema, Document } from 'mongoose';
 import { Atm } from 'domain/entities';
 
 const AtmSchema = new Schema({
-  location: {
-    longitude: Number,
-    latitude: Number,
+  STREET_ADDRESS: String,
+  LOCATION: {
+    X: Number,
+    Y: Number,
   },
-  deposit: {
+  ZIP: Number,
+  ATM_DEPOSIT: {
     type: Boolean,
   },
-  balance: {
-    type: Number,
-  },
-  currencies: [{
-    type: String,
-  }],
+  TRANSACTIONS: {},
+  CURRENCY: {
+
+  }
 });
 
 type AtmType = Atm & Document;
