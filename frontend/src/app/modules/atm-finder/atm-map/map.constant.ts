@@ -1,3 +1,5 @@
+import {CurrencyType} from "../../../../../../backend/src/api/routes/transaction/types";
+
 export interface LatLng {
     lat: string;
     lng: string;
@@ -296,3 +298,42 @@ export const gMapStyles: any = [
         ]
     }
 ];
+
+export type GetAllRecommendedForWithdrawal = {
+    X: number;
+    Y: number;
+    AMOUNT: number;
+    CURRENCY: string;
+    DEPOSIT: true;
+}
+
+export type GetAllRecommendedForDeposit = {
+    X: number;
+    Y: number;
+    DEPOSIT: false;
+}
+
+export type GetAllRecommendedAtms = GetAllRecommendedForWithdrawal | GetAllRecommendedForDeposit
+
+export type RecommendedAtm = Atm & {
+    EST_TIME_IN_MINS: number;
+}
+
+export type TransactionRequest = {
+    CURRENCY: CurrencyType;
+    AMOUNT: number;
+    ATM_ID: string;
+    USER_ID: string;
+    TYPE: string;
+    /**
+     * Est. time by recommendation engine that is returned back via UI
+     * */
+    EST_TIME_IN_MINS?: number;
+}
+
+export type TransactionResponse = {
+    VALID_UNTIL?: string;
+    QR_CODE: string; // encrypted hash containing necessary info
+}
+
+
