@@ -10,16 +10,16 @@
 //   await addDataToJson();
 // })();
 
-import { cronJob } from 'cron';
+import { CronJob } from 'cron';
 import { transactionRepository, atmRepository } from 'gateways'
 
-const checkCron = new cronJob('5 * * * * *', (async () => {
+const checkCron = new CronJob('15 * * * * *', (async () => {
   try {
     console.log('⌚ cron checker');
     const allTransactions = await transactionRepository.findAllActiveTransactions();
     const currDate = new Date();
     await Promise.all(allTransactions.map(async x => {
-      if (currDate.getTime() > x.valid_until.getTime()) {
+      if (x.valid_until && currDate.getTime() > x.valid_until.getTime()) {
         x.is_used = true;
         await atmRepository.incrementBalance(x.atm, x.currency_type, x.amount);
         await x.save();
@@ -29,6 +29,8 @@ const checkCron = new cronJob('5 * * * * *', (async () => {
     console.log('⌚error in cron: ', e);
   }
 }), null, false, 'America/Los_Angeles');
+
+export default checkCron;
 
 
 
