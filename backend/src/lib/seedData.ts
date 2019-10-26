@@ -12,19 +12,45 @@ export async function seedData() {
   console.log(newUser);
   console.log('---------------------------------');
 
-  const atm = {
-    location: 'test',
+  const atm1 = {
+    location: {
+      longitude: 47.474856,
+      latitude: 19.098792,
+    },
     deposit: true,
     balance: 140,
     currencies: ['EUR', 'HUF'],
   };
-  const newAtm = await AtmModel.create(atm);
+
+  const atm2 = {
+    location: {
+      longitude: 47.481920,
+      latitude: 19.068655,
+    },
+    deposit: true,
+    balance: 140,
+    currencies: ['EUR', 'HUF'],
+  };
+  const atm3 = {
+    location: {
+      longitude: 47.486211,
+      latitude: 19.074642,
+    },
+    deposit: true,
+    balance: 140,
+    currencies: ['EUR', 'HUF'],
+  };
+  const newAtm1 = await AtmModel.create(atm1);
+  const newAtm2 = await AtmModel.create(atm2);
+  const newAtm3 = await AtmModel.create(atm3);
   console.log('-----------NEW ATM--------------');
-  console.log(newAtm);
+  console.log(newAtm1);
+  console.log(newAtm2);
+  console.log(newAtm3);
   console.log('---------------------------------');
 
   const transaction = {
-    atm: newAtm._id,
+    atm: newAtm1._id,
     user: newUser._id,
     type: 'RESERVE',
     amount: 30.5,
@@ -35,7 +61,7 @@ export async function seedData() {
   console.log('---------------------------------');
 
   const transaction2 = {
-    atm: newAtm._id,
+    atm: newAtm2._id,
     user: newUser._id,
     type: 'RESERVE',
     amount: 30.5,

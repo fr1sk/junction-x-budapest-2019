@@ -4,7 +4,6 @@ import TransactionModel from 'gateways/mongodb/models/TransactionModel';
 
 export class TransactionRepository {
   async createTransaction(transaction: Transaction): Promise<Transaction> {
-    console.log(transaction);
     return TransactionModel.create(transaction);
   }
 }

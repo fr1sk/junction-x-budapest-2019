@@ -1,8 +1,9 @@
-import { Model, Document } from 'mongoose';
+import { Location } from './Location';
 
 export interface Atm {
     _id?: string;
-    location: string;
+    location: Location;
     balance: number;
     currencies: string[];
+    distance?: string;
 }
