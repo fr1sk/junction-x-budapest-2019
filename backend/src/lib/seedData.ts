@@ -1,6 +1,8 @@
 import AtmModel from 'gateways/mongodb/models/AtmModel';
 import UserModel from 'gateways/mongodb/models/UserModel';
 import TransactionModel from 'gateways/mongodb/models/TransactionModel';
+import {transactionRepository} from "root/src/gateways";
+import {undoReservation} from "root/src/domain/use_cases/undoReservation";
 
 export async function seedData() {
   const user = {

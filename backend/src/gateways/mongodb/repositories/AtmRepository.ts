@@ -2,6 +2,7 @@
 import { Atm, Location, AtmFilter } from 'domain/entities';
 import AtmModel from 'gateways/mongodb/models/AtmModel';
 import { getDistanceInKm } from 'lib/distance';
+import {CurrencyType} from "root/src/api/routes/transaction/types";
 
 export class AtmRepository {
   async getAtmList(location: Location): Promise<Atm[]> {
@@ -43,6 +44,10 @@ export class AtmRepository {
 
   async updateAtm(atm_id: string, data: object): Promise<Atm> {
     return Promise.reject(new Error('Not implemented'));
+  }
+
+  async incrementBalance(atm_id: string, currency: CurrencyType, amount: number): Promise<Atm> {
+    return AtmModel.findOneAndUpdate({_id: atm_id}, {$inc: {CURRENCY: {[currency]: amount}}});
   }
 }
 

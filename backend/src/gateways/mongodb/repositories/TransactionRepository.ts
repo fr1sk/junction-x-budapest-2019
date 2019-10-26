@@ -14,6 +14,10 @@ export class TransactionRepository {
   async findByReservationIdAndQrCode(resId: string, qrCode: string): Promise<Transaction> {
     return Promise.reject(new Error('Not implemented'));
   }
+
+  async findOneById(transaction_id): Promise<Transaction> {
+    return Promise.reject(new Error('Not implemented'));
+  }
 }
 
 export default TransactionRepository;
