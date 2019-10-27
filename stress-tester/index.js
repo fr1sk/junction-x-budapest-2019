@@ -3,13 +3,13 @@ const _ = require('lodash');
 
 async function main() {
 
-    const backendUrl = process.env.BACKEND_URL;
+    const backendUrl = process.env.BACKEND_URL || 'http://localhost:8080';
 
     const lat = 47.480829799999995;
     const long = 19.0790687;
 
     const recommendations = await Promise.all(
-        _.range(0, 100)
+        _.range(0, 20)
             .map(async i => {
                 const request = {
                     location: {

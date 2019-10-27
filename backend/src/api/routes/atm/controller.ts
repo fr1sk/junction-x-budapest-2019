@@ -28,7 +28,7 @@ export async function getRecommendedAtmsHandler(req: Request, res: Response): Pr
     const matrixDistanceData = await mapDistance(
       { lat: req.body.location.X, lng: req.body.location.Y }, { lat: a.LOCATION.X, lng: a.LOCATION.Y }
     );
-    const realTimeDistance = matrixDistanceData[0].mapFound ? matrixDistanceData[0].duration.value * 60 : 15;
+    const realTimeDistance = matrixDistanceData[0].mapFound ? Math.round(matrixDistanceData[0].duration.value / 60) : 15;
     return { ...a, EST_TIME_IN_MINS: realTimeDistance + 1 }
   }));
 
