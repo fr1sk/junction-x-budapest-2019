@@ -2,6 +2,7 @@ import {} from 'googlemaps';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { gMapStyles, Atm, LatLng } from './map.constant';
 import { FetchService } from 'src/app/shared/services/fetch.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-atm-map',
@@ -14,13 +15,17 @@ export class AtmMapComponent implements OnInit, AfterViewInit {
     mapLoaded: boolean;
     isWithdrawSelected: boolean;
     isInputChanged: boolean;
+    lat: number;
+    lng: number;
+    amountVal: number;
 
-    constructor(private fetchService: FetchService) {}
+    constructor(private fetchService: FetchService, private router: Router) {}
 
     ngOnInit() {
         this.mapLoaded = false;
         this.isWithdrawSelected = false;
         this.isInputChanged = false;
+        this.amountVal = null;
     }
 
     ngAfterViewInit() {
@@ -31,10 +36,29 @@ export class AtmMapComponent implements OnInit, AfterViewInit {
         this.isWithdrawSelected = true;
     }
 
-    depositClicked() {}
+    onWithdrawConfirmClick() {
+        console.log(this.amountVal);
+        this.router.navigate(['/atm-finder/suggested-atm'], {
+            queryParams: {
+                lat: this.lat,
+                lng: this.lng,
+                amount: this.amountVal,
+                deposit: !this.isWithdrawSelected
+            }
+        });
+    }
+
+    depositClicked() {
+        this.router.navigate([`/atm-finder/suggested-atm`], {
+            queryParams: {
+                deposit: true,
+                lat: this.lat,
+                lng: this.lng
+            }
+        });
+    }
 
     onInputChange(event) {
-        console.log(event);
         this.isInputChanged = true;
     }
 
@@ -43,6 +67,8 @@ export class AtmMapComponent implements OnInit, AfterViewInit {
             navigator.geolocation.getCurrentPosition(position => {
                 const longitude = position.coords.longitude;
                 const latitude = position.coords.latitude;
+                this.lat = latitude;
+                this.lng = longitude;
 
                 this.initMap(latitude, longitude);
             });
@@ -61,7 +87,7 @@ export class AtmMapComponent implements OnInit, AfterViewInit {
             zoomControl: true,
             zoomControlOptions: {
                 style: google.maps.ZoomControlStyle.SMALL,
-                position: google.maps.ControlPosition.RIGHT
+                position: google.maps.ControlPosition.RIGHT_TOP
             }
         };
         this.map = new google.maps.Map(

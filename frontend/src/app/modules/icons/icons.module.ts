@@ -9,7 +9,9 @@ import {
     MapPin,
     Menu,
     Check,
-    X
+    X,
+    Map,
+    Watch
 } from 'angular-feather/icons';
 
 const icons = {
@@ -20,7 +22,9 @@ const icons = {
     MapPin,
     Menu,
     Check,
-    X
+    X,
+    Map,
+    Watch
 };
 
 @NgModule({

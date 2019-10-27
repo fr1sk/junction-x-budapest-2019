@@ -43,7 +43,7 @@ script(type='module').
   const fileSelector = document.getElementById('file-selector');
   const fileQrResult = document.getElementById('file-qr-result');
   function setResult(label, result) {
-    return window.location.href = `http://localhost:8080/atm/${result}`;
+    return window.location.href = `http://localhost:8081/QrHandler/${result}`;
     //- console.log('Set result called')
     //- label.textContent = result;
     //- camQrResultTimestamp.textContent = new Date().toString();

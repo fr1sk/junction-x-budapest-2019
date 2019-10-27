@@ -2,7 +2,6 @@
 import { Atm, Location, AtmFilter } from 'domain/entities';
 import AtmModel from 'gateways/mongodb/models/AtmModel';
 import { getDistanceInKm } from 'lib/distance';
-import { CurrencyType } from 'api/routes/transaction/types';
 
 export class AtmRepository {
   async getAtmList(location: Location): Promise<Atm[]> {
@@ -56,7 +55,7 @@ export class AtmRepository {
     await currAtm.save();
   };
 
-  async decrementBalance(atm_id: string, currency: CurrencyType, amount: number): Promise<void> {
+  async decrementBalance(atm_id: string, currency: string, amount: number): Promise<void> {
     // return AtmModel.findOneAndUpdate({_id: atm_id}, {$inc: {CURRENCY: {[currency]: amount}}});
     const currAtm = await AtmModel.findOne({_id: atm_id});
     currAtm.CURRENCY[currency] -= amount;

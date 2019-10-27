@@ -14,12 +14,17 @@
         </div>
         <div *ngIf="isWithdrawSelected" class="option_2">
             <input
+                [(ngModel)]="amountVal"
                 class="wd_input"
                 type="number"
                 placeholder="$123456"
                 (keydown)="onInputChange()"
             />
-            <button class="cc_button --confirm" [disabled]="!isInputChanged">
+            <button
+                class="cc_button --confirm"
+                [disabled]="!isInputChanged"
+                (click)="onWithdrawConfirmClick()"
+            >
                 <i-feather name="check"></i-feather>
             </button>
             <button class="cc_button --cancel" [disabled]="!isInputChanged">
