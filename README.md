@@ -1,8 +1,8 @@
-# Rectop 🏧💳
+# Rectop 🏧
 
 > Recommendation engine for ATM search based on workload
 
-## Components
+## Components 🔧
 
 * [backend](backend/README.md)
 * [frontend](frontend/README.md)
