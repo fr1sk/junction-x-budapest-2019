@@ -3,7 +3,7 @@ import { User } from 'domain/entities';
 
 const UserSchema = new Schema({
   balance: {
-    type: String,
+    type: Number,
   },
   currency: {
     type: String,
