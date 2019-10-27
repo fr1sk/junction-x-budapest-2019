@@ -9,6 +9,20 @@ export class UserRepository {
     return user;
   }
 
+  async getCurrentUser(id: string): Promise<User> {
+    const user = await UserModel.findById(id);
+
+    return user;
+  }
+
+  async checkBalance(id: string, amount: number) {
+    const user = await UserModel.findById(id);
+
+    if (user.balance < amount) {
+      throw new Error('You don\'t have anough money on your account');
+    }
+  }
+
   async decrementBalance(user_id: string, amount: number): Promise<void> {
     const usr = await UserModel.findOne({ _id: user_id });
     usr.balance -= amount;

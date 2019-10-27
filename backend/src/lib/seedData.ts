@@ -78,3 +78,15 @@ export async function seedData() {
   // console.log(newTransaction2);
   // console.log('---------------------------------');
 }
+
+export async function seedUsers() {
+  const promises = [];
+  for (let i=0; i<=1000; i++) {
+    promises.push(UserModel.create({
+      balance: Math.floor(Math.random() * 2000) + 500,
+      currency: 'HUF',
+    }));
+  }
+
+  await Promise.all(promises);
+}

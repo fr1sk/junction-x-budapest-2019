@@ -1,6 +1,6 @@
 import { TransactionRequest, TransactionResponse } from 'api/routes/transaction/types';
 import { encrypt } from 'lib/encryption';
-import { atmRepository, transactionRepository } from 'gateways';
+import { atmRepository, transactionRepository, userRepository } from 'gateways';
 import { TransactionType } from 'domain/entities/Transaction';
 import moment from 'moment';
 
@@ -9,6 +9,12 @@ export async function createTransaction(
     CURRENCY, AMOUNT, ATM_ID, USER_ID, EST_TIME_IN_MINS,
   }: TransactionRequest,
 ): Promise<TransactionResponse> {
+  try {
+    await userRepository.checkBalance(USER_ID, AMOUNT);
+  } catch (e) {
+    throw new Error('Transaction failed');
+  }
+
   const VALID_UNTIL = moment().add(EST_TIME_IN_MINS, 'minutes');
   const data = { CURRENCY, AMOUNT };
 
