@@ -1,36 +1,38 @@
 .wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
 }
 
 .qr-code-container {
-  padding-top: 30px;
+    padding-top: 30px;
 }
 
 .timer-container {
-  display: flex;
-  padding-top: 14px;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    padding-top: 14px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .timer-segment-container {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .timer-segment {
-  width: 42px;
-  margin-bottom: 7px;
-  font-size: 36px;
-  color: inherit;
+    width: 42px;
+    margin-bottom: 7px;
+    font-size: 36px;
+    color: inherit;
 }
 
 .timer-separator {
-  display: block;
-  color: inherit;
-  font-size: 19px;
-  width: 17px;
+    display: block;
+    color: inherit;
+    font-size: 19px;
+    width: 17px;
 }

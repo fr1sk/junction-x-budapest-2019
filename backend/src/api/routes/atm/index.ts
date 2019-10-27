@@ -1,7 +1,7 @@
 import { Router } from 'express';
+import { validationMiddleware } from 'lib/validationMiddleware';
 import * as atmController from './controller';
 import { atmQuery, recommendedAtmQuery } from './validation';
-import { validationMiddleware } from 'lib/validationMiddleware';
 
 const routes = Router();
 

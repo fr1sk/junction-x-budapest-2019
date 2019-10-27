@@ -24,6 +24,9 @@ module.exports = {
     'no-console': 'off',
     'no-underscore-dangle': 'off',
     'camelcase': 'off',
+    'no-mixed-operators': 'off',
+    'no-param-reassign': 'off',
+    'max-len': 'off',
   },
   settings: {
     "import/resolver": {

@@ -329,12 +329,13 @@ export interface TransactionRequest {
     TYPE: string;
     /**
      * Est. time by recommendation engine that is returned back via UI
+     *
      * */
     EST_TIME_IN_MINS?: number;
 }
 
-export type TransactionResponse = {
+export interface TransactionResponse {
     TRANSACTION_ID: string;
     VALID_UNTIL?: string;
     QR_CODE: string; // encrypted hash containing necessary info
-};
+}

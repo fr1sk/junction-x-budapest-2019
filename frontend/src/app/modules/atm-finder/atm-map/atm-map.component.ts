@@ -43,7 +43,8 @@ export class AtmMapComponent implements OnInit, AfterViewInit {
                 lat: this.lat,
                 lng: this.lng,
                 amount: this.amountVal,
-                deposit: !this.isWithdrawSelected
+                deposit: !this.isWithdrawSelected,
+                currency: 'HUF'
             }
         });
     }

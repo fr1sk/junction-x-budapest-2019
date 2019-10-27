@@ -1,5 +1,5 @@
 <div class="wrap">
-    <div class="qr-code-container">
+    <div class="qr-code-container" *ngIf="qrCode">
         <qrcode
             [qrdata]="qrCode"
             [size]="256"
@@ -20,4 +20,6 @@
             </div>
         </div>
     </div>
+    <div class="qr-map" #qrMap style="height: 50vh; width: 100%"></div>
+    <app-loader *ngIf="!qrCode"></app-loader>
 </div>

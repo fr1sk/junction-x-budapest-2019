@@ -1,7 +1,7 @@
-import {TransactionRequest, TransactionResponse} from 'api/routes/transaction/types';
-import {encrypt} from 'lib/encryption';
-import {atmRepository, transactionRepository} from 'gateways';
-import {TransactionType} from 'domain/entities/Transaction';
+import { TransactionRequest, TransactionResponse } from 'api/routes/transaction/types';
+import { encrypt } from 'lib/encryption';
+import { atmRepository, transactionRepository, userRepository } from 'gateways';
+import { TransactionType } from 'domain/entities/Transaction';
 import moment from 'moment';
 
 export async function createTransaction(
@@ -9,6 +9,11 @@ export async function createTransaction(
     CURRENCY, AMOUNT, ATM_ID, USER_ID, EST_TIME_IN_MINS,
   }: TransactionRequest,
 ): Promise<TransactionResponse> {
+  try {
+    await userRepository.checkBalance(USER_ID, AMOUNT);
+  } catch (e) {
+    throw new Error('Transaction failed');
+  }
 
   const VALID_UNTIL = moment().add(EST_TIME_IN_MINS, 'minutes');
   const data = { CURRENCY, AMOUNT };
@@ -28,10 +33,10 @@ export async function createTransaction(
   await atmRepository.decrementBalance(ATM_ID, transaction.currency_type, transaction.amount);
   try {
     const { _id } = await transactionRepository.createTransaction(transaction);
-    return {TRANSACTION_ID: _id, QR_CODE, VALID_UNTIL};
-  } catch(err){
+    return { TRANSACTION_ID: _id, QR_CODE, VALID_UNTIL };
+  } catch (err) {
     await atmRepository.incrementBalance(ATM_ID, transaction.currency_type, transaction.amount);
-    throw new Error('Transaction failed')
+    throw new Error('Transaction failed');
   }
 }
 

@@ -22,6 +22,9 @@ export class FetchService {
     }
 
     createTransaction(request: TransactionRequest) {
-        return this.http.post<TransactionResponse>(`/api/atms`, request);
+        return this.http.post<TransactionResponse>(
+            `/api/transactions`,
+            request
+        );
     }
 }

@@ -1,7 +1,7 @@
-import {Router} from 'express';
+import { Router } from 'express';
+import { validationMiddleware } from 'lib/validationMiddleware';
 import * as transactionController from './controller';
 import { transactionQuery } from './validation';
-import { validationMiddleware } from 'lib/validationMiddleware';
 
 const routes = Router();
 
