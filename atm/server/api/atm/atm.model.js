@@ -13,7 +13,8 @@ const AtmSchema = new mongoose.Schema({
   TRANSACTIONS: {},
   CURRENCY: {
 
-  }
+  },
+  weight: Number
 });
 
 

@@ -9,7 +9,9 @@ export class UserRepository {
   }
 
   async decrementBalance(user_id: string, amount: number): Promise<void> {
-    await UserModel.findOne({_id: user_id}, {$inc: {balance: -amount}});
+    const usr = await UserModel.findOne({_id: user_id});
+    usr.balance -= amount;
+    await usr.save();
   }
 
   async login(userId: string): Promise<User> {

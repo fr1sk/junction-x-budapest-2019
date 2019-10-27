@@ -7,17 +7,18 @@ export async function withdrawWithQrCode(transaction_id: string, qr_code: string
     JSON.parse(decrypt(qr_code)); // CURRENCY + AMOUNT
     const transaction = await transactionRepository.findByReservationIdAndQrCode(transaction_id, qr_code);
     const now = moment();
-
+    console.log(transaction);
     const valid_until = moment(transaction.valid_until);
     if (now.isBefore(valid_until) && transaction.type === 'RESERVE') {
-        await userRepository.decrementBalance(transaction.user, transaction.amount);
-        await transactionRepository.updateTransaction(transaction_id, { type: 'WITHDRAW' });
-        return {
-          success: true,
-          type: 'withdraw',
-          amount: transaction.amount,
-          currency: transaction.currency_type
-        }
+      console.log('✅')
+      await userRepository.decrementBalance(transaction.user, transaction.amount);
+      await transactionRepository.updateTransaction(transaction_id, { type: 'WITHDRAW' });
+      return {
+        success: true,
+        type: 'withdraw',
+        amount: transaction.amount,
+        currency: transaction.currency_type
+      }
     } else if (transaction.type === 'DEPOSIT'){
       // await userRepository.incrementBalance(transaction.user, transaction.amount);
       return {
