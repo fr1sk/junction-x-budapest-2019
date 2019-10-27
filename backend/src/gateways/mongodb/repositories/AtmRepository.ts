@@ -9,7 +9,7 @@ export class AtmRepository {
 
     const nearestFiveAtms = this.getNearestAtms(atms, location);
 
-    return nearestFiveAtms;
+    return nearestFiveAtms.slice(0, 5);
   }
 
   getNearestAtms(atms: Atm[], location: Location) {
@@ -17,9 +17,7 @@ export class AtmRepository {
       location.X, location.Y) - getDistanceInKm(b.LOCATION.X, b.LOCATION.Y,
       location.X, location.Y));
 
-    const nearestFiveAtms = sortedAtms.slice(0, 5);
-
-    return nearestFiveAtms;
+    return sortedAtms;
   }
 
   async getAtm(atm_id: string): Promise<Atm> {
@@ -45,7 +43,7 @@ export class AtmRepository {
 
     await AtmModel.updateOne({ _id: scoredAtms[0]._id }, { weight: scoredAtms[0].weight });
 
-    return atms;
+    return atms.slice(0, 5);
   }
 
   async incrementBalance(atm_id: string, currency: string, amount: number): Promise<void> {
