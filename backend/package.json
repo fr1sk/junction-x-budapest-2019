@@ -15,6 +15,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@google/maps": "^1.0.2",
     "@types/mongodb": "^3.3.6",
     "@types/mongoose": "^5.5.23",
     "body-parser": "^1.18.3",
