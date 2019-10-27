@@ -9,7 +9,7 @@ export class UserRepository {
   }
 
   async decrementBalance(user_id: string, amount: number): Promise<void> {
-    await UserModel.findOneAndUpdate({_id: user_id}, {$inc: {balance: -amount}});
+    await UserModel.findOne({_id: user_id}, {$inc: {balance: -amount}});
   }
 
   async login(userId: string): Promise<User> {
