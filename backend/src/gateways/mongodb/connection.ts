@@ -20,7 +20,7 @@ mongoose.connection.once('open', async (): Promise<void> => {
   // mongoose.connection.db.dropDatabase();
   // await seedData();
   // await AtmModel.updateMany({}, {weight: 0.3});
-  await AtmModel.updateMany({}, { $set: { weight: 0.3 } }).exec();
+  // await AtmModel.updateMany({}, { $set: { weight: 0.3 } }).exec();
 }).on('error', (e: Error): Error => {
   throw e;
 });
