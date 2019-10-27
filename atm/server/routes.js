@@ -23,7 +23,7 @@ module.exports = app => {
           msg = `Success: You successfully deposit ${x.data.currency} 💸`
         }
       } else {
-        msg = 'Error: QR code expired or already used 🚫💰'
+        msg = 'Sorry: QR code expired or already used 🚫💰'
       }
       return res.render('success', { msg });
     } catch (e) {
