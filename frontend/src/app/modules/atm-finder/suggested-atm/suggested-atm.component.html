@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="atm-card" *ngFor="let atm of getAllRecommendedAtms$ | async">
+        <div class="address">
+            <i-feather class="map-pin-icon" name="map-pin"></i-feather>
+            <span class="street-address">{{ atm.STREET_ADDRESS }}</span>
+        </div>
+        <div class="distance-container">
+            <i-feather name="watch"></i-feather>
+            <span class="distance"
+                >Distance: {{ atm.EST_TIME_IN_MINS }} min</span
+            >
+        </div>
+    </div>
+</div>
