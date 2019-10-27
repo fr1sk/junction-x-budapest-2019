@@ -1,5 +1,5 @@
 const googleMapsClient = require('@google/maps').createClient({
-  key: 'AIzaSyBZHEutO-O-3sH5DfMNYzXZGjgX4SYt1zc'
+  key: process.env.GMAPS
 });
 
 const mapDistance = async (origin, destination) => {
