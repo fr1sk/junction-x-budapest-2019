@@ -19,7 +19,6 @@ export async function withdrawWithQrCodeHandler(req: Request, res: Response): Pr
   const {TRANSACTION_ID, QR_CODE} = req.body;
   try {
     await withdrawWithQrCode(TRANSACTION_ID, QR_CODE);
-    return res.status(400).json({errors: ['QR Code has expired or already used.']});
   } catch (err) {
     return res.status(400).json({errors: err.toString()});
   }

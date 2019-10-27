@@ -1,8 +1,8 @@
 import {TransactionRequest, TransactionResponse} from 'api/routes/transaction/types';
-import { encrypt } from 'lib/encryption';
+import {encrypt} from 'lib/encryption';
 import {atmRepository, transactionRepository} from 'gateways';
-import moment, { Moment } from 'moment';
-import { TransactionType } from 'domain/entities/Transaction';
+import moment from 'moment';
+import {TransactionType} from 'domain/entities/Transaction';
 
 export async function createTransaction(
   {
@@ -22,7 +22,7 @@ export async function createTransaction(
     qr_code: QR_CODE,
     currency_type: CURRENCY,
     is_used: false,
-    type: TransactionType.WITHDRAW,
+    type: TransactionType.PRESERVE,
     valid_until: new Date(VALID_UNTIL.format()),
   };
   await atmRepository.decrementBalance(ATM_ID, transaction.currency_type, transaction.amount);

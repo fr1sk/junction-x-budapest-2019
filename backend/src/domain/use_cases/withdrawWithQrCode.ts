@@ -3,11 +3,12 @@ import { decrypt } from 'lib/encryption';
 import moment = require("root/node_modules/moment");
 
 export async function withdrawWithQrCode(transaction_id: string, qr_code: string): Promise<void> {
-    const qr_code_data = JSON.parse(decrypt(qr_code));
+    const qr_code_data = JSON.parse(decrypt(qr_code)); // CURRENCY + AMOUNT
     const transaction = await transactionRepository.findByReservationIdAndQrCode(transaction_id, qr_code);
-    const now = moment().utc();
-    if (moment(qr_code_data.valid_until).isBefore(now) && transaction.type === 'RESERVE') {
-        userRepository.decrementBalance(transaction.user, qr_code_data.amount);
+    const now = moment();
+    const valid_until = moment(transaction.valid_until);
+    if (now.isBefore(valid_until) && transaction.type === 'RESERVE') {
+        await userRepository.decrementBalance(transaction.user, transaction.amount);
         await transactionRepository.updateTransaction(transaction_id, {type: 'WITHDRAW'});
     } else {
         // rollback..
