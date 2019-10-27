@@ -9,6 +9,8 @@ export interface Atm {
     CURRENCY: Currency;
     TRANSACTIONS: TransactionType[];
     distance?: string;
+    weight: number;
+    score?: number;
 }
 
 interface TransactionType {

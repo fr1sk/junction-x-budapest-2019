@@ -14,6 +14,12 @@ const routes: Routes = [
             import('./modules/atm-finder/atm-finder.module').then(
                 m => m.AtmFinderModule
             )
+    },
+    {
+        path: 'qr-code',
+        loadChildren: () => import('./modules/qr-code-preview/qr-code-preview.module').then(
+                    m => m.QrCodePreviewModule
+        )
     }
 ];
 

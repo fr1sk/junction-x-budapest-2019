@@ -2,7 +2,6 @@
 import { Atm, Location, AtmFilter } from 'domain/entities';
 import AtmModel from 'gateways/mongodb/models/AtmModel';
 import { getDistanceInKm } from 'lib/distance';
-import { CurrencyType } from 'api/routes/transaction/types';
 
 export class AtmRepository {
   async getAtmList(location: Location): Promise<Atm[]> {
@@ -37,18 +36,22 @@ export class AtmRepository {
 
     const filteredAtms = this.getNearestAtms(atms, filter.location);
 
-    return filteredAtms;
-  }
+    const scoredAtms = filteredAtms.map((atm, index): Atm => {
+      atm.score = (filteredAtms.length - index) * atm.weight + (filteredAtms.length-index)/filteredAtms.length * atm.weight;
+      atm.weight += filteredAtms.length / (filteredAtms.length - index) * atm.weight;
 
-  async updateAtm(atm_id: string, data: object): Promise<Atm> {
-    return Promise.reject(new Error('Not implemented'));
+      return atm;
+    }).sort((a,b) => b.score - a.score);
+
+    await AtmModel.updateOne({ _id: scoredAtms[0]._id }, { weight: scoredAtms[0].weight });
+
+    return atms;
   }
 
   async incrementBalance(atm_id: string, currency: string, amount: number): Promise<void> {
-    // return AtmModel.findOneAndUpdate({_id: atm_id}, {$inc: {CURRENCY: {[currency]: amount}}});
-    console.log(atm_id);
     const currAtm = await AtmModel.findOne({_id: atm_id});
     currAtm.CURRENCY[currency] += amount;
+ 
     await currAtm.save();
   };
 
