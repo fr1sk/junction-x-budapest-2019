@@ -13,7 +13,7 @@
 import { CronJob } from 'cron';
 import { transactionRepository, atmRepository } from 'gateways'
 
-const checkCron = new CronJob('15 * * * * *', (async () => {
+const checkCron = new CronJob('1 * * * * * *', (async () => {
   try {
     console.log('⌚ cron checker');
     const allTransactions = await transactionRepository.findAllActiveTransactions();
