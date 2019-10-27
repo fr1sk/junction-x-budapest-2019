@@ -1,4 +1,4 @@
-# Rectop
+# Rectop 🏧💳
 
 > Recommendation engine for ATM search based on workload
 
