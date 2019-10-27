@@ -10,6 +10,7 @@ import * as moment from 'moment';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { gMapStyles } from '../../atm-finder/atm-map/map.constant';
+import { CookieService } from 'ngx-cookie-service';
 
 interface StopwatchProps {
     hours: string;
@@ -40,17 +41,19 @@ export class QrCodeComponent implements OnInit, OnDestroy {
 
     constructor(
         private fetchService: FetchService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private cookieService: CookieService
     ) {}
 
     ngOnInit() {
+        const userId = this.cookieService.get('user').match(/\".*\"/)[0];
         this.queryParamsSubscription = this.route.queryParams.subscribe(
             params => {
                 this.userLat = params.userLat;
                 this.userLng = params.userLng;
 
-                this.atmLat = params.userLat;
-                this.atmLng = params.userLng;
+                this.atmLat = params.atmLat;
+                this.atmLng = params.atmLng;
 
                 console.log(params);
                 this.fetchService
@@ -59,7 +62,7 @@ export class QrCodeComponent implements OnInit, OnDestroy {
                         CURRENCY: params.deposit ? null : 'HUF',
                         ATM_ID: params.atm_id,
                         TYPE: params.type,
-                        USER_ID: '5db4e787082774ebc0b6ef8d'
+                        USER_ID: userId.replace(/^"(.*)"$/, '$1')
                     })
                     .subscribe(data => {
                         this.qrCode = data.TRANSACTION_ID + '_' + data.QR_CODE;
