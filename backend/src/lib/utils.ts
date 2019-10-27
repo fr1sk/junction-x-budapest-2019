@@ -11,7 +11,7 @@
 // })();
 
 import { cronJob } from 'cron';
-import { transactionRepository, atmRepository } from 'gateways'
+import { transactionRepository, atmRepository } from 'gateways';
 
 const checkCron = new cronJob('5 * * * * *', (async () => {
   try {
@@ -29,7 +29,6 @@ const checkCron = new cronJob('5 * * * * *', (async () => {
     console.log('⌚error in cron: ', e);
   }
 }), null, false, 'America/Los_Angeles');
-
 
 
 

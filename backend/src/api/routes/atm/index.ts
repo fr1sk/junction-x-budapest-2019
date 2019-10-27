@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import * as atmController from './controller';
-import { atmQuery } from './validation';
+import { atmQuery, recommendedAtmQuery } from './validation';
+import { validationMiddleware } from 'lib/validationMiddleware';
 
 const routes = Router();
 
@@ -25,8 +26,8 @@ const routes = Router();
  *              application/json
  */
 
-routes.get('/', atmQuery, atmController.getAtmListHandler);
+routes.get('/', atmQuery, validationMiddleware, atmController.getAtmListHandler);
 
-routes.post('/recommend', atmController.getRecommendedAtmsHandler);
+routes.post('/recommend', recommendedAtmQuery, validationMiddleware, atmController.getRecommendedAtmsHandler);
 
 export default routes;

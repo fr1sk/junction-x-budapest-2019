@@ -6,6 +6,7 @@ mongoose.Promise = global.Promise;
 mongoose.set('useCreateIndex', true);
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
+mongoose.set('useFindAndModify', false);
 
 try {
   console.log(`Mongoose URL - ${constants.MONGODB_URL}`);
