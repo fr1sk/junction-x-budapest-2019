@@ -27,4 +27,10 @@ export class FetchService {
             request
         );
     }
+
+    getUserBudget(userId) {
+        return this.http.post('/api/users/balance', {
+            userId
+        });
+    }
 }

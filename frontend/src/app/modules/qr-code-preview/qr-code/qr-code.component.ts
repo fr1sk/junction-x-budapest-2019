@@ -26,6 +26,7 @@ interface StopwatchProps {
 export class QrCodeComponent implements OnInit, OnDestroy {
     @ViewChild('qrMap') mapElement: any;
     map: google.maps.Map;
+    bounds = new google.maps.LatLngBounds();
 
     qrCode: string;
     stopwatch: StopwatchProps;
@@ -110,7 +111,7 @@ export class QrCodeComponent implements OnInit, OnDestroy {
     private initMap(lat: number, lng: number) {
         const mapProperties = {
             center: new google.maps.LatLng(this.atmLat, this.atmLng),
-            zoom: 12,
+            zoom: 11,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             styles: gMapStyles,
             disableDefaultUI: true,
