@@ -29,13 +29,11 @@ export class AtmRepository {
 
   async filterAtms(filter: AtmFilter): Promise<Atm[]> {
     const atms = await AtmModel.find({
-      ATM_DEPOSIT: filter.deposit,
-      CURRENCY: {
-        [filter.currency]: {
-          $gte: filter.amount,
-        }
+      ...(filter.deposit && { ATM_DEPOSIT: filter.deposit }),
+      [`CURRENCY.${filter.currency}`]: {
+        $gt: filter.amount,
       },
-    });
+    }).lean();
 
     const filteredAtms = this.getNearestAtms(atms, filter.location);
 

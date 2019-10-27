@@ -1,13 +1,11 @@
 import {Request, Response} from 'express';
 import {validationResult} from 'express-validator';
 import {Location} from 'domain/entities/Location';
-import {getAtmList} from 'domain/use_cases/getAtmList';
+import { getAtmList } from 'domain/use_cases/getAtmList';
+import { AtmFilter } from 'domain/entities';
+import { getRecommendedAtms } from 'domain/use_cases/getRecommendedAtms';
 
 export async function getAtmListHandler(req: Request, res: Response): Promise<Response> {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
   const locationQuery = req.query;
   const location = locationQuery as Location;
 
@@ -17,10 +15,14 @@ export async function getAtmListHandler(req: Request, res: Response): Promise<Re
 }
 
 export async function getRecommendedAtmsHandler(req: Request, res: Response): Promise<Response> {
-  const {X, Y} = req.body;
-  // todo send some other atms..
-  const atmList = await getAtmList({X, Y});
-  // todo add relative info..
+  const atmFilter: AtmFilter = {
+    deposit: req.body.deposit || false,
+    location: req.body.location || {X:23,Y:24},
+    amount: req.body.amount || 0,
+    currency: req.body.currency || 'HUF',
+  };
+
+  const atmList = await getRecommendedAtms(atmFilter);
   const _atms = atmList.map((a, i) => ({...a, EST_TIME_IN_MINS: 15 + i}));
 
   return res.json(_atms);
