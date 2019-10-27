@@ -12,14 +12,10 @@ export type TransactionRequest = {
     EST_TIME_IN_MINS?: number;
 }
 
-export type QrCode = {
-    valid_until?: Moment;
-    qr_code: string; // encrypted hash containing necessary info
-}
-
-export type CreateWithdrawal = {
-    transaction_id: string;
-    qr_code: string;
+export type TransactionResponse = {
+    TRANSACTION_ID: string;
+    VALID_UNTIL?: Moment;
+    QR_CODE: string; // encrypted hash containing necessary info
 }
 
 export type CurrencyType = 'EUR' | 'HUF';

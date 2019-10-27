@@ -1,5 +1,5 @@
-import {transactionRepository, userRepository} from 'gateways';
-import {decrypt} from "root/src/lib/encryption";
+import { transactionRepository, userRepository } from 'gateways';
+import { decrypt } from 'lib/encryption';
 import moment = require("root/node_modules/moment");
 
 export async function withdrawWithQrCode(transaction_id: string, qr_code: string): Promise<void> {

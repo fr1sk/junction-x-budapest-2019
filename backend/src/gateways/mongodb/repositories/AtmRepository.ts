@@ -2,7 +2,7 @@
 import { Atm, Location, AtmFilter } from 'domain/entities';
 import AtmModel from 'gateways/mongodb/models/AtmModel';
 import { getDistanceInKm } from 'lib/distance';
-import {CurrencyType} from "root/src/api/routes/transaction/types";
+import { CurrencyType } from 'api/routes/transaction/types';
 
 export class AtmRepository {
   async getAtmList(location: Location): Promise<Atm[]> {

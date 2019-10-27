@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import config from 'root/src/config/constants';
+import config from 'config/constants';
 
 const ENCRYPTION_KEY = config.SECRET_KEY; // Must be 256 bits (32 characters)
 const IV_LENGTH = 16; // For AES, this is always 16
