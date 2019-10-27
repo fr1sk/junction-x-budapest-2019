@@ -14,13 +14,13 @@ module.exports = app => {
       const { data } = req.params;
       const [ TRANSACTION_ID, QR_CODE ] = data.split('_');
       const x = await axios.post(`${process.env.API_URI}/api/transactions/withdraw`, { TRANSACTION_ID, QR_CODE });
-      console.log(x, TRANSACTION_ID, QR_CODE);
+      console.log(x.data, TRANSACTION_ID, QR_CODE);
       let msg = '';
-      if (x.success) {
-        if (x.type === 'witdraw') {
-          msg = `Success: You successfully witdraw ${x.amount} ${x.currency} 💰`
+      if (x.data.success) {
+        if (x.data.type === 'withdraw') {
+          msg = `Success: You successfully witdraw ${x.data.amount} ${x.data.currency} 💰`
         } else {
-          msg = `Success: You successfully deposit ${x.currency} 💸`
+          msg = `Success: You successfully deposit ${x.data.currency} 💸`
         }
       } else {
         msg = 'Error: QR code expired or already used 🚫💰'
