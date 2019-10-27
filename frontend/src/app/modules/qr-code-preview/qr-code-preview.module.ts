@@ -1,18 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoaderComponent } from 'src/app/shared/components/loader/loader.component';
-import { IconsModule } from '../icons/icons.module';
 import { QrCodePreviewRoutingModule } from './qr-code-preview.routing.module';
 import { QrCodeComponent } from './qr-code/qr-code.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import { SharedModule } from 'src/app/shared.module';
 
 @NgModule({
-    declarations: [QrCodeComponent, LoaderComponent],
+    declarations: [QrCodeComponent],
     imports: [
         CommonModule,
         QrCodePreviewRoutingModule,
         QRCodeModule,
-        IconsModule
+        SharedModule
     ]
 })
 export class QrCodePreviewModule {}
