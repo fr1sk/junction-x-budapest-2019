@@ -16,9 +16,9 @@ export async function createTransactionHandler(req: Request, res: Response): Pro
 
 export async function withdrawWithQrCodeHandler(req: Request, res: Response): Promise<Response> {
   // todo authorization secret id from atm..
-  const {transaction_id, qr_code} = req.body;
+  const {TRANSACTION_ID, QR_CODE} = req.body;
   try {
-    await withdrawWithQrCode(transaction_id, qr_code);
+    await withdrawWithQrCode(TRANSACTION_ID, QR_CODE);
     return res.status(400).json({errors: ['QR Code has expired or already used.']});
   } catch (err) {
     return res.status(400).json({errors: err.toString()});

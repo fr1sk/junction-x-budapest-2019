@@ -332,6 +332,7 @@ export type TransactionRequest = {
 }
 
 export type TransactionResponse = {
+    TRANSACTION_ID: string;
     VALID_UNTIL?: string;
     QR_CODE: string; // encrypted hash containing necessary info
 }
