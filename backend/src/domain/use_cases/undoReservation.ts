@@ -1,4 +1,4 @@
-import {atmRepository, transactionRepository} from "root/src/gateways";
+import {atmRepository, transactionRepository} from 'gateways';
 
 export async function undoReservation(atm_id: string, transaction_id: string){
     const transaction = await transactionRepository.getTransaction(transaction_id);
