@@ -1,3 +1,10 @@
+@import '../app/colors';
+
+.main-container {
+    height: 90vh;
+    background-color: $background-color;
+}
+
 .container {
     display: flex;
     justify-content: center;
