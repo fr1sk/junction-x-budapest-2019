@@ -15,10 +15,14 @@ export class UserRepository {
     return user;
   }
 
-  async getBalance(userId: string): Promise<number> {
+  async getBalance(userId: string): Promise<User> {
+    if (!userId) {
+      const user = await UserModel.findOne({ is_loggedin: false });
+      return user;
+    }
     const user = await UserModel.findById(userId);
 
-    return user.balance;
+    return user;
   }
 
   async checkBalance(id: string, amount: number) {

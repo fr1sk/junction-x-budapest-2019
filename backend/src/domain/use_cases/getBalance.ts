@@ -1,6 +1,7 @@
 import { userRepository } from 'gateways';
+import { User } from 'domain/entities';
 
-export async function getBalance(userId: string): Promise<number> {
+export async function getBalance(userId: string): Promise<User> {
   return userRepository.getBalance(userId);
 }
 
