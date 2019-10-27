@@ -1,7 +1,7 @@
 import { userRepository } from 'gateways';
 
 export default async (req, res, next) => {
-  if (req.cookies['user']) {
+  if (req.cookies.user) {
     return next();
   }
 

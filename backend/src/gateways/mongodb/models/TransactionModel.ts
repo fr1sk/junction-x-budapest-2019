@@ -22,7 +22,7 @@ const TransactionSchema = new Schema({
   weight: {
     type: Number,
     default: 0,
-  }
+  },
 });
 
 type TransactionType = Transaction & Document;
