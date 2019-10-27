@@ -9,13 +9,11 @@ async function main() {
     const long = 19.0790687;
 
     const recommendations = await Promise.all(
-        _.range(0, 20)
+        _.range(0, 5)
             .map(async i => {
                 const request = {
-                    location: {
-                        X: lat,
-                        Y: long
-                    },
+                    X: lat,
+                    Y: long,
                     deposit: i % 2 === 0
                 };
 
@@ -25,7 +23,7 @@ async function main() {
                 }
                 // console.log(`req: ${i} - ${JSON.stringify(request)}`);
                 const r = await axios.post(`${backendUrl}/api/atms/recommend`, request);
-                // console.log(r.data[0]);
+                console.log(r.data);
                 return r.data[0];
             })
     );
