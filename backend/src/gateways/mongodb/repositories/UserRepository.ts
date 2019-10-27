@@ -16,10 +16,10 @@ export class UserRepository {
   }
 
   async getBalance(userId: string): Promise<User> {
-    if (!userId) {
+    if (userId.length === 0) {
       const user = await UserModel.findOne({ is_loggedin: false });
       await this.login(user._id);
-      
+
       return user;
     }
     const user = await UserModel.findById(userId);
