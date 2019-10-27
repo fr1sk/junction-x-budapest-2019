@@ -1,0 +1,23 @@
+<div class="wrap">
+    <div class="qr-code-container">
+        <qrcode
+            [qrdata]="qrCode"
+            [size]="256"
+            [level]="'M'"
+            [colordark]="'#50B748'"
+        ></qrcode>
+        <div class="timer-container">
+            <div class="timer-segment-container">
+                <div class="timer-segment">{{ stopwatch.hours }}</div>
+            </div>
+            <div class="timer-separator">:</div>
+            <div class="timer-segment-container">
+                <div class="timer-segment">{{ stopwatch.minutes }}</div>
+            </div>
+            <div class="timer-separator">:</div>
+            <div class="timer-segment-container">
+                <div class="timer-segment">{{ stopwatch.seconds }}</div>
+            </div>
+        </div>
+    </div>
+</div>
