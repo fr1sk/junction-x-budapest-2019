@@ -5,7 +5,7 @@ import {
     RecommendedAtm,
     TransactionRequest,
     TransactionResponse
-} from "../../modules/atm-finder/atm-map/map.constant";
+} from '../../modules/atm-finder/atm-map/map.constant';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +14,7 @@ export class FetchService {
     constructor(private http: HttpClient) {}
 
     getAllAtms(lat: number, lng: number) {
-        return this.http.get(`/api/atms?longitude=${lat}&latitude=${lng}`);
+        return this.http.get(`/api/atms?x=${lat}&y=${lng}`);
     }
 
     getAllRecommendedAtms(request: GetAllRecommendedAtms) {
