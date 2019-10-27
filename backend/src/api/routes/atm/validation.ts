@@ -6,6 +6,4 @@ export const atmQuery = [
 ];
 
 export const recommendedAtmQuery = [
-  body('x').isNumeric(),
-  body('y').isNumeric(),
 ];

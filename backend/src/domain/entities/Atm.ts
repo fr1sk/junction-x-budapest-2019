@@ -24,7 +24,10 @@ interface Currency {
 
 export interface AtmFilter {
   deposit: boolean;
-  location: Location;
+  location: {
+    X: number;
+    Y: number;
+  };
   amount: number;
   currency: string;
 }
