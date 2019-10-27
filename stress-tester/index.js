@@ -9,7 +9,7 @@ async function main() {
     const long = 19.0790687;
 
     const recommendations = await Promise.all(
-        _.range(0, 5)
+        _.range(0, 100)
             .map(async i => {
                 const request = {
                     X: lat,

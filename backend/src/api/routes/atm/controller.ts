@@ -37,5 +37,5 @@ export async function getRecommendedAtmsHandler(req: Request, res: Response): Pr
     return { ...a, EST_TIME_IN_MINS: realTimeDistance + 1 }
   }));
 
-  return res.json(_atms);
+  return res.json(_atms.sort((a, b) => a.EST_TIME_IN_MINS - b.EST_TIME_IN_MINS));
 }
