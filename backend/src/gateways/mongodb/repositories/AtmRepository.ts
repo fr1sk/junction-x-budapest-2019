@@ -9,7 +9,7 @@ export class AtmRepository {
 
     const nearestFiveAtms = this.getNearestAtms(atms, location);
 
-    return nearestFiveAtms;
+    return nearestFiveAtms.slice(0, 5);
   }
 
   getNearestAtms(atms: Atm[], location: Location) {
@@ -17,9 +17,7 @@ export class AtmRepository {
       location.X, location.Y) - getDistanceInKm(b.LOCATION.X, b.LOCATION.Y,
       location.X, location.Y));
 
-    const nearestFiveAtms = sortedAtms.slice(0, 5);
-
-    return nearestFiveAtms;
+    return sortedAtms;
   }
 
   async getAtm(atm_id: string): Promise<Atm> {
@@ -37,30 +35,30 @@ export class AtmRepository {
     const filteredAtms = this.getNearestAtms(atms, filter.location);
 
     const scoredAtms = filteredAtms.map((atm, index): Atm => {
-      atm.score = (filteredAtms.length - index) * atm.weight + (filteredAtms.length-index)/filteredAtms.length * atm.weight;
+      atm.score = (filteredAtms.length - index) * atm.weight + (filteredAtms.length - index) / filteredAtms.length * atm.weight;
       atm.weight += filteredAtms.length / (filteredAtms.length - index) * atm.weight;
 
       return atm;
-    }).sort((a,b) => b.score - a.score);
+    }).sort((a, b) => b.score - a.score);
 
     await AtmModel.updateOne({ _id: scoredAtms[0]._id }, { weight: scoredAtms[0].weight });
 
-    return atms;
+    return atms.slice(0, 5);
   }
 
   async incrementBalance(atm_id: string, currency: string, amount: number): Promise<void> {
-    const currAtm = await AtmModel.findOne({_id: atm_id});
+    const currAtm = await AtmModel.findOne({ _id: atm_id });
     currAtm.CURRENCY[currency] += amount;
- 
+
     await currAtm.save();
-  };
+  }
 
   async decrementBalance(atm_id: string, currency: string, amount: number): Promise<void> {
     // return AtmModel.findOneAndUpdate({_id: atm_id}, {$inc: {CURRENCY: {[currency]: amount}}});
-    const currAtm = await AtmModel.findOne({_id: atm_id});
+    const currAtm = await AtmModel.findOne({ _id: atm_id });
     currAtm.CURRENCY[currency] -= amount;
     await currAtm.save();
-  };
+  }
 }
 
 export default AtmRepository;
