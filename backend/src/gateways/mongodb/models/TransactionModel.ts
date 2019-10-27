@@ -19,6 +19,10 @@ const TransactionSchema = new Schema({
   },
   valid_until: Date,
   currency_type: String,
+  weight: {
+    type: Number,
+    default: 0,
+  },
 });
 
 type TransactionType = Transaction & Document;

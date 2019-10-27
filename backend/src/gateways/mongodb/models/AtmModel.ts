@@ -35,6 +35,7 @@ const AtmSchema = new Schema({
       required: false,
     },
   },
+  weight: Number,
 });
 
 type AtmType = Atm & Document;
