@@ -15,4 +15,4 @@ const addRecomendationParams = async () => {
   }));
 }
 // (async () => await fillAtms())();
-(async () => await addRecomendationParams())();
+// (async () => await addRecomendationParams())();

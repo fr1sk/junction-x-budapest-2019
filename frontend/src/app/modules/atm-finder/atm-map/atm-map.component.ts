@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { gMapStyles, Atm, LatLng } from './map.constant';
 import { FetchService } from 'src/app/shared/services/fetch.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-atm-map',
@@ -18,6 +19,8 @@ export class AtmMapComponent implements OnInit, AfterViewInit {
     lat: number;
     lng: number;
     amountVal: number;
+
+    private fetchSubscription: Subscription;
 
     constructor(private fetchService: FetchService, private router: Router) {}
 
@@ -96,26 +99,34 @@ export class AtmMapComponent implements OnInit, AfterViewInit {
             mapProperties
         );
 
-        this.fetchService.getAllAtms(lat, lng).subscribe((data: Atm[]) => {
-            data.map(
-                el =>
-                    new google.maps.Marker({
-                        position: new google.maps.LatLng(
-                            el.LOCATION.X,
-                            el.LOCATION.Y
-                        ),
-                        icon:
-                            'https://slicicemluade.vsimonovski.now.sh/otp_pin.png',
-                        map: this.map
-                    })
-            );
+        this.fetchSubscription = this.fetchService
+            .getAllAtms(lat, lng)
+            .subscribe((data: Atm[]) => {
+                data.map(
+                    el =>
+                        new google.maps.Marker({
+                            position: new google.maps.LatLng(
+                                el.LOCATION.X,
+                                el.LOCATION.Y
+                            ),
+                            icon:
+                                'https://slicicemluade.vsimonovski.now.sh/otp_pin.png',
+                            map: this.map
+                        })
+                );
 
-            const userMarker = new google.maps.Marker({
-                position: new google.maps.LatLng(lat, lng),
-                map: this.map
+                const userMarker = new google.maps.Marker({
+                    position: new google.maps.LatLng(lat, lng),
+                    map: this.map
+                });
             });
-        });
 
         this.mapLoaded = true;
+    }
+
+    ngOnDestroy() {
+        if (this.fetchSubscription) {
+            this.fetchSubscription.unsubscribe();
+        }
     }
 }

@@ -27,8 +27,8 @@ export class SuggestedAtmComponent implements OnInit, OnDestroy {
                 this.userLat = params.lat;
                 this.userLng = params.lng;
                 const request = {
-                    x: params.lat,
-                    y: params.lng,
+                    X: params.lat,
+                    Y: params.lng,
                     DEPOSIT: params.deposit,
                     AMOUNT: !!params.deposit ? null : params.amount,
                     CURRENCY: !!params.deposit ? null : params.currency

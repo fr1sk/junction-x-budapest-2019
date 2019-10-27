@@ -15,7 +15,7 @@ export async function createTransaction(
     throw new Error('Transaction failed');
   }
 
-  const VALID_UNTIL = moment().add(EST_TIME_IN_MINS, 'minutes');
+  const VALID_UNTIL = moment().add(EST_TIME_IN_MINS + 5, 'minutes');
   const data = { CURRENCY, AMOUNT };
 
   const QR_CODE = encrypt(JSON.stringify(data));
