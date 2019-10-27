@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import constants from 'config/constants';
-import { seedData } from 'lib/seedData';
+import AtmModel from 'gateways/mongodb/models/AtmModel';
 
 mongoose.Promise = global.Promise;
 mongoose.set('useCreateIndex', true);
@@ -18,7 +18,10 @@ try {
 mongoose.connection.once('open', async (): Promise<void> => {
   console.log('Connection with database is established');
   // mongoose.connection.db.dropDatabase();
-  await seedData();
+  // await seedData();
+  // await AtmModel.updateMany({}, {weight: 0.3});
+  await AtmModel.updateMany({}, {'$set':{weight: 0.3}}).exec();
+
 }).on('error', (e: Error): Error => {
   throw e;
 });
