@@ -11,11 +11,11 @@
 ## Demo 👨🏻‍💻
 ### Mobile 📱
 ![mobile-app](./demo/mobile.png)
-* Main menu screen
-* Choose deposit or withdraw
-* Choose withdraw amount
-* Recomended ATMs screen
-* Mobile QR code & mini map screen
+1. Main menu screen
+2. Choose deposit or withdraw
+3. Choose withdraw amount
+4. Recomended ATMs screen
+5. Mobile QR code & mini map screen
 
 <!-- ![mobile-main-menu](./demo/mobile-main-menu.png)
 _Main menu screen_
@@ -30,8 +30,8 @@ _Mobile QR code & mini map screen_ -->
 
 ### Mobile 🏧 (With really ugly UI)
 ![atm-app](./demo/atm.png)
-* Scan screen (after choosing quick cash option)
-* Success withdraw screen
+1. Scan screen (after choosing quick cash option)
+2. Success withdraw screen
 
 <!-- ![atm-scan](./demo/atm-scan.png)
 _Scan screen (after choosing quick cash option)_
