@@ -22,10 +22,10 @@ export class TransactionRepository {
     return TransactionModel.findOne({ _id: resId, qr_code: qrCode });
   }
 
-  async findAllActiveTransactions(): Promise<TransactionMongoose[]> {
-    return TransactionModel.find({ is_used: false });
-  }
-  // findAllActiveTransactions = async () => TransactionModel.find({ is_used: false });
+  // async findAllActiveTransactions(): Promise<TransactionMongoose[]> {
+  //   return TransactionModel.find({ is });
+  // }
+  findAllActiveTransactions = async () => TransactionModel.find({ is_used: false });
 }
 
 export default TransactionRepository;

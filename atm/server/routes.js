@@ -13,7 +13,7 @@ module.exports = app => {
     try {
       const { data } = req.params;
       const [ TRANSACTION_ID, QR_CODE ] = data.split('_');
-      const x = await axios.post(`${process.env.API_URI}/api/transactions/withdraw`, { TRANSACTION_ID, QR_CODE });
+      const x = await axios.post(`${process.env.API_URI}/api/transactions/withdraw`, { TRANSACTION_ID, QR_CODE, VALID_UNTIL: "2019-11-27T13:02:05.443Z" });
       console.log(x.data, TRANSACTION_ID, QR_CODE);
       let msg = '';
       if (x.data.success) {
