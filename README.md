@@ -10,7 +10,14 @@
 
 ## Demo 👨🏻‍💻
 ### Mobile 📱
-![mobile-main-menu](./demo/mobile-main-menu.png)
+![mobile-app](./demo/mobile.png)
+* Main menu screen
+* Choose deposit or withdraw
+* Choose withdraw amount
+* Recomended ATMs screen
+* Mobile QR code & mini map screen
+
+<!-- ![mobile-main-menu](./demo/mobile-main-menu.png)
 _Main menu screen_
 ![mobile-withdraw-deposit](./demo/mobile-withdraw-deposit.png)
 _Choose deposit or withdraw_
@@ -19,11 +26,15 @@ _Choose withdraw amount_
 ![mobile-recomended-atms](./demo/mobile-recomended-atms.png)
 _Recomended ATMs screen_
 ![mobile-qr-code-screen](./demo/mobile-qr-code-screen.png)
-_Mobile QR code & mini map screen_
+_Mobile QR code & mini map screen_ -->
 
 ### Mobile 🏧 (With really ugly UI)
+![atm-app](./demo/atm.png)
+* Scan screen (after choosing quick cash option)
+* Success withdraw screen
 
-![atm-scan](./demo/atm-scan.png)
+<!-- ![atm-scan](./demo/atm-scan.png)
 _Scan screen (after choosing quick cash option)_
-![mobile-withdraw-deposit](./demo/atm-success.png)
-_Success withdraw screen_
+![atm-success](./demo/atm-success.png)
+_Success withdraw screen_ -->
+
