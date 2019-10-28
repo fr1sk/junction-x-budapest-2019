@@ -20,7 +20,7 @@ npm start
 ### :arrow_right: Usage
 
 ```bash
-GET /api/atms?x=23&y # get initial ATMs
+GET /api/atms # get initial ATMs
 POST /api/atms/recommend # get recommended ATMs
 POST /api/transactions/ # create transaction
 POST /api/transactions/withdraw # withdraw money from ATM
