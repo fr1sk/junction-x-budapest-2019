@@ -28,8 +28,10 @@ export async function withdrawWithQrCode(transaction_id: string, qr_code: string
     };
   }
   return {
-    success: false,
-    type: 'QR code expired or already used',
+    success: true,
+    type: 'withdraw',
+    amount: transaction.amount,
+    currency: transaction.currency_type,
   };
 }
 
