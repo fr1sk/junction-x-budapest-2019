@@ -9,7 +9,7 @@
 * [ATM](atm/README.md)
 
 ## Demo 👨🏻‍💻
-### Mobile 📱
+### Mobile APP 📱
 ![mobile-app](./demo/mobile.png)
 1. Main menu screen
 2. Choose deposit or withdraw
@@ -28,7 +28,7 @@ _Recomended ATMs screen_
 ![mobile-qr-code-screen](./demo/mobile-qr-code-screen.png)
 _Mobile QR code & mini map screen_ -->
 
-### Mobile 🏧 (With really ugly UI)
+### ATM APP 🏧 (With really ugly UI 😂)
 ![atm-app](./demo/atm.png)
 1. Scan screen (after choosing quick cash option)
 2. Success withdraw screen
