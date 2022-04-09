@@ -28,7 +28,7 @@
     "express-validator": "^6.2.0",
     "helmet": "^3.21.2",
     "jest": "^24.9.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "mongoose": "^5.7.7",
     "morgan": "^1.9.1",
     "pg": "^7.12.1",
