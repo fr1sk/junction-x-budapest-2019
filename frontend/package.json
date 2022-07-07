@@ -23,7 +23,7 @@
     "angular-feather": "^6.0.2",
     "angularx-qrcode": "^1.7.0-beta.5",
     "core-js": "^2.5.4",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "ngx-cookie-service": "^2.2.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
